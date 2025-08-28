@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('../assets/fonts/Flexo-Light.woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('../assets/fonts/Flexo-Regular.woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('../assets/fonts/Flexo-Medium.woff2');
+    font-weight: 500;
+
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Flexo';
+    src: url('../assets/fonts/Flexo-Bold.woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Heavitas';
+    src: url('../assets/fonts/Heavitas.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html, body {
+    font-family: 'Flexo', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.heavitas {
+    font-family: 'Heavitas', sans-serif;
+}

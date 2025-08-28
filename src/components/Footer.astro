@@ -1,0 +1,146 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo-wtext.png";
+
+const year = new Date().getFullYear();
+
+const navLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/nosotros", label: "Nosotros" },
+  { href: "/fabrica", label: "Fábrica" },
+  { href: "/contacto", label: "Contacto" },
+];
+
+const solutions = [
+  { href: "/fabrica#ecore", label: "eCore Switch" },
+  { href: "/fabrica#gateway", label: "Payment Gateway" },
+  { href: "/fabrica#tap", label: "Tap to Phone" },
+  { href: "/fabrica#recurrente", label: "Cobros Recurrentes" },
+  { href: "/fabrica#wallet", label: "Billetera Móvil" },
+  { href: "/fabrica#token", label: "Tokenización" },
+  { href: "/fabrica#rtp", label: "Real Time Payments" },
+  { href: "/fabrica#qr", label: "Generador de QR" },
+];
+
+const legal = [
+  { href: "/privacidad", label: "Privacidad" },
+  { href: "/terminos", label: "Términos" },
+];
+---
+
+<footer id="siteFooter" class="relative bg-white text-[#575756] overflow-hidden border-t border-[#575756]/10">
+  <!-- decor -->
+  <div class="pointer-events-none absolute inset-0">
+    <div class="absolute -top-24 left-1/2 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-[#B41A1D]/5 blur-3xl"></div>
+    <div class="absolute -bottom-24 right-[-10%] h-[34rem] w-[34rem] rounded-full bg-[#575756]/10 blur-3xl"></div>
+    <div class="absolute inset-0 [background:radial-gradient(transparent_1px,rgba(87,87,86,0.05)_1px)] [background-size:26px_26px]"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-7xl px-4 md:px-6">
+    <!-- CTA superior -->
+    <div class="ft-col flex flex-col gap-4 md:flex-row md:items-center md:justify-between py-10">
+      <p class="text-xl md:text-2xl heavitas tracking-tight text-[#121212]">
+        <span class="text-[#575756]">#WeCreate</span><span id="ft-hash-accent" class="text-[#B41A1D]">ToInnovate</span>
+      </p>
+      <a
+        href="/contacto"
+        class="inline-flex items-center justify-center rounded-xl bg-[#B41A1D] px-5 py-3 font-semibold text-white shadow-[0_12px_28px_rgba(180,26,29,0.35)] active:translate-y-px transition"
+      >
+        Hablemos
+        <i class="fa-solid fa-arrow-right ml-2"></i>
+      </a>
+    </div>
+
+    <hr class="border-[#575756]/10" />
+
+    <!-- Grid principal -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 py-12">
+      <!-- Col 1: Marca -->
+      <div class="ft-col md:col-span-5">
+        <a href="/" class="inline-flex items-center gap-3">
+          <Image src={logo} alt="Red Pontis" class="h-16 w-auto" />
+          <span class="sr-only">Red Pontis</span>
+        </a>
+        <p class="mt-4 max-w-md text-sm text-[#575756]">
+          Fábrica de software especializada en el ecosistema de pagos. Construimos plataformas seguras y escalables
+          para adquirentes, fintechs y comercios en LATAM.
+        </p>
+
+        <!-- Sociales -->
+        <div class="mt-5 flex items-center gap-4 text-[#575756]">
+          <a aria-label="LinkedIn" href="https://www.linkedin.com" class="hover:text-[#B41A1D] transition">
+            <i class="fa-brands fa-linkedin text-xl"></i>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Col 2: Navegación -->
+      <nav class="ft-col md:col-span-3">
+        <h3 class="text-sm font-semibold text-[#121212]">Navegación</h3>
+        <ul class="mt-4 space-y-2">
+          {navLinks.map((l) => (
+            <li>
+              <a href={l.href} class="text-sm text-[#575756] hover:text-[#B41A1D] transition">{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Col 3: Soluciones -->
+      <nav class="ft-col md:col-span-4">
+        <h3 class="text-sm font-semibold text-[#121212]">Soluciones</h3>
+        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {solutions.map((s) => (
+            <li>
+              <a href={s.href} class="text-sm text-[#575756] hover:text-[#B41A1D] transition">{s.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+
+    <hr class="border-[#575756]/10" />
+
+    <!-- Franja legal -->
+    <div class="ft-col flex flex-col md:flex-row md:items-center md:justify-between gap-4 py-6">
+      <p class="text-sm text-[#575756]/80">© {year} Red Pontis. Todos los derechos reservados.</p>
+      <ul class="flex flex-wrap items-center gap-5">
+        {legal.map((l) => (
+          <li>
+            <a href={l.href} class="text-sm text-[#575756]/80 hover:text-[#B41A1D] transition">{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Animar columnas
+  const cols = Array.from(document.querySelectorAll<HTMLElement>("#siteFooter .ft-col"));
+  cols.forEach((el, i) => {
+    gsap.from(el, {
+      opacity: 0,
+      y: 16,
+      duration: 0.5,
+      delay: i * 0.05,
+      ease: "power3.out",
+      // scrollTrigger: { trigger: el, start: "top 90%", once: true },
+    });
+  });
+
+  // Pulso del hashtag
+  const accent = document.querySelector<HTMLElement>("#ft-hash-accent")!;
+  gsap.to(accent, {
+    filter: "brightness(1.25)",
+    duration: 1.6,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+  });
+</script>

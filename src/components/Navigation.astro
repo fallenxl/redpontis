@@ -1,0 +1,246 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+
+type Link = { path: string; label: string };
+
+const links: Link[] = [
+  { path: "/", label: "Inicio" },
+  { path: "/nosotros", label: "Nosotros" },
+  { path: "/fabrica", label: "Fábrica" },
+  { path: "/contacto", label: "Contacto" },
+];
+
+const pathname = Astro.url.pathname;
+/** Ajusta estas URLs de idioma según tu estrategia (ruta, subdominio o query) */
+const langLinks = [
+  { code: "es", label: "Español", href: pathname + "?lang=es" },
+  { code: "en", label: "English", href: pathname + "?lang=en" },
+];
+const currentLang = (Astro.url.searchParams.get("lang") || "es").toLowerCase();
+---
+<header id="siteHeader" class="fixed top-0 z-50 w-full bg-white/80 backdrop-blur border-b border-neutral-200/60 py-2">
+  <nav class="mx-auto max-w-7xl px-4 md:px-6">
+    <div class="flex h-16 items-center justify-between gap-4">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3">
+        <Image src={logo} alt="Red Pontis" class="h-14 w-auto select-none" />
+        <span class="sr-only">Red Pontis</span>
+      </a>
+
+      <!-- Desktop: links -->
+      <ul class="hidden md:flex items-center gap-1 rounded-2xl bg-[#575756]/10 p-1">
+        {links.map((l) => {
+          const active = pathname === l.path || (l.path !== "/" && pathname.startsWith(l.path + "/"));
+          return (
+            <li>
+              <a
+                href={l.path}
+                class={`block rounded-xl px-4 py-2 text-sm font-medium transition-colors
+                  ${active
+                    ? "text-[#B41A1D] bg-[#B41A1D]/10"
+                    : "text-[#575756] hover:text-[#B41A1D] hover:bg-[#B41A1D]/10"}`}
+              >
+                {l.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <!-- Desktop: Language dropdown -->
+      <div class="relative hidden md:block">
+        <button
+          id="langBtn"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          class="inline-flex items-center gap-2 rounded-xl border border-[#575756]/30 px-3 py-2 text-sm text-[#575756] hover:bg-[#575756]/10 transition"
+        >
+          <span class="h-2 w-2 rounded-full bg-[#B41A1D]"></span>
+          {langLinks.find(l => l.code===currentLang)?.label || "Español"}
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 7.5 10 12l4.5-4.5" /></svg>
+        </button>
+
+        <div
+          id="langMenu"
+          role="menu"
+          aria-labelledby="langBtn"
+          class="absolute right-0 mt-2 w-44 origin-top-right rounded-xl border border-[#575756]/20 bg-white shadow-md ring-1 ring-black/5 overflow-hidden
+                 opacity-0 pointer-events-none scale-95"
+        >
+          {langLinks.map(item => (
+            <a
+              href={item.href}
+              role="menuitem"
+              class={`block px-4 py-2 text-sm transition-colors
+                ${item.code===currentLang
+                  ? "text-[#B41A1D] bg-[#B41A1D]/10"
+                  : "text-[#575756] hover:bg-[#B41A1D]/10 hover:text-[#B41A1D]"}`}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Toggle Móvil -->
+      <button
+        id="menuToggle"
+        aria-controls="mobileMenu"
+        aria-expanded="false"
+        class="md:hidden inline-flex items-center justify-center rounded-lg border border-[#575756]/30 px-3 py-2 text-[#575756] hover:bg-[#575756]/10 active:scale-95 transition"
+      >
+        <span class="sr-only">Abrir menú</span>
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div id="mobileMenu" class="md:hidden origin-top scale-y-0 h-0 overflow-hidden">
+      <div class="my-3 rounded-2xl border border-[#575756]/20 bg-white shadow-sm">
+        <!-- Lang on mobile -->
+        <div class="px-4 py-3 border-b border-[#575756]/10">
+          <button
+            id="langBtnMobile"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            class="w-full flex items-center justify-between rounded-lg border border-[#575756]/20 px-3 py-2 text-sm text-[#575756] hover:bg-[#575756]/10 transition"
+          >
+            <span class="flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-[#B41A1D]"></span>
+              {langLinks.find(l => l.code===currentLang)?.label || "Español"}
+            </span>
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 7.5 10 12l4.5-4.5" /></svg>
+          </button>
+          <div
+            id="langMenuMobile"
+            role="menu"
+            class="mt-2 origin-top rounded-lg border border-[#575756]/20 bg-white shadow-sm ring-1 ring-black/5 overflow-hidden
+                   opacity-0 pointer-events-none scale-95"
+          >
+            {langLinks.map(item => (
+              <a
+                href={item.href}
+                role="menuitem"
+                class={`block px-3 py-2 text-sm transition-colors
+                  ${item.code===currentLang
+                    ? "text-[#B41A1D] bg-[#B41A1D]/10"
+                    : "text-[#575756] hover:bg-[#B41A1D]/10 hover:text-[#B41A1D]"}`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <ul class="divide-y divide-[#575756]/10">
+          {links.map((l) => {
+            const active = pathname === l.path || (l.path !== "/" && pathname.startsWith(l.path + "/"));
+            return (
+              <li>
+                <a
+                  href={l.path}
+                  class={`block px-4 py-3 text-[15px] font-medium transition-colors
+                    ${active ? "text-[#B41A1D]" : "text-[#575756] hover:text-[#B41A1D]"}`}
+                >
+                  {l.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  import gsap from "gsap";
+
+  const header = document.querySelector<HTMLElement>("#siteHeader")!;
+  const menuToggle = document.querySelector<HTMLButtonElement>("#menuToggle")!;
+  const mobileMenu = document.querySelector<HTMLDivElement>("#mobileMenu")!;
+  const langBtn = document.querySelector<HTMLButtonElement>("#langBtn");
+  const langMenu = document.querySelector<HTMLDivElement>("#langMenu");
+  const langBtnMobile = document.querySelector<HTMLButtonElement>("#langBtnMobile");
+  const langMenuMobile = document.querySelector<HTMLDivElement>("#langMenuMobile");
+
+  // Sombra en scroll
+  let lastY = 0;
+  window.addEventListener("scroll", () => {
+    const scrolled = window.scrollY > 8;
+    if (scrolled && lastY <= 8) gsap.to(header, { duration: 0.25, boxShadow: "0 6px 24px rgba(0,0,0,0.08)" });
+    else if (!scrolled && lastY > 8) gsap.to(header, { duration: 0.25, boxShadow: "0 0 0 rgba(0,0,0,0)" });
+    lastY = window.scrollY;
+  });
+
+  // Helpers de dropdown
+  const openDD = (panel: HTMLDivElement) => {
+    gsap.killTweensOf(panel);
+    panel.style.pointerEvents = "auto";
+    gsap.fromTo(panel, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power2.out" });
+  };
+  const closeDD = (panel: HTMLDivElement) => {
+    gsap.killTweensOf(panel);
+    gsap.to(panel, {
+      opacity: 0, scale: 0.95, duration: 0.16, ease: "power2.in",
+    });
+  };
+  const toggleDD = (btn: HTMLButtonElement | null, panel: HTMLDivElement | null) => {
+    if (!btn || !panel) return;
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+    if (expanded) { btn.setAttribute("aria-expanded", "false"); closeDD(panel); }
+    else { btn.setAttribute("aria-expanded", "true"); openDD(panel); }
+  };
+
+  // Desktop Lang
+  langBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleDD(langBtn, langMenu!);
+  });
+
+  // Mobile Lang
+  langBtnMobile?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleDD(langBtnMobile, langMenuMobile!);
+  });
+
+  // Cerrar dropdowns al hacer click fuera / ESC
+  document.addEventListener("click", (e) => {
+    const t = e.target as HTMLElement;
+    if (langMenu && !t.closest("#langBtn") && !t.closest("#langMenu")) {
+      langBtn?.setAttribute("aria-expanded", "false"); closeDD(langMenu);
+    }
+    if (langMenuMobile && !t.closest("#langBtnMobile") && !t.closest("#langMenuMobile")) {
+      langBtnMobile?.setAttribute("aria-expanded", "false"); closeDD(langMenuMobile);
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (langMenu) { langBtn?.setAttribute("aria-expanded", "false"); closeDD(langMenu); }
+      if (langMenuMobile) { langBtnMobile?.setAttribute("aria-expanded", "false"); closeDD(langMenuMobile); }
+    }
+  });
+
+  // Menú móvil
+  let isOpen = false;
+  const openMenu = () => {
+    isOpen = true;
+    menuToggle.setAttribute("aria-expanded", "true");
+    gsap.set(mobileMenu, { height: "auto" });
+    const h = mobileMenu.getBoundingClientRect().height;
+    gsap.fromTo(mobileMenu, { height: 0, scaleY: 0, opacity: 0 }, { height: h, scaleY: 1, opacity: 1, duration: 0.35, ease: "power2.out" });
+  };
+  const closeMenu = () => {
+    isOpen = false;
+    menuToggle.setAttribute("aria-expanded", "false");
+    gsap.to(mobileMenu, { height: 0, scaleY: 0, opacity: 0, duration: 0.3, ease: "power2.in" });
+  };
+  menuToggle.addEventListener("click", () => (isOpen ? closeMenu() : openMenu()));
+  mobileMenu.addEventListener("click", (e: MouseEvent) => {
+    const t = e.target as HTMLElement;
+    if (t && t.closest("a")) closeMenu();
+  });
+</script>

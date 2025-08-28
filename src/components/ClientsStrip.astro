@@ -1,0 +1,87 @@
+---
+import { Image } from "astro:assets";
+import bbva from "../assets/partners/bbva.svg";
+import niubiz from "../assets/partners/niubiz.png";
+import ueno from "../assets/partners/ueno-bank.png";
+import telefonica from "../assets/partners/telefonica.png";
+import falabella from "../assets/partners/falabella.png";
+import kushki from "../assets/partners/kushki.png";
+
+const partners = [
+  { src: bbva, alt: "BBVA" },
+  { src: niubiz, alt: "Niubiz" },
+  { src: ueno, alt: "Ueno Bank" },
+  { src: telefonica, alt: "Telefónica" },
+  { src: falabella, alt: "Falabella" },
+  { src: kushki, alt: "Kushki" },
+];
+---
+
+<section
+  id="clients"
+  aria-labelledby="clients-title"
+  class="relative overflow-hidden bg-[#575756]/5"
+>
+
+  <div class="mx-auto max-w-7xl px-6 py-16">
+    <header class="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h2 id="clients-title" class="heavitas text-3xl md:text-4xl text-[#B41A1D] tracking-tight">
+          Clientes
+        </h2>
+        <p class="mt-1 text-sm md:text-base text-[#575756]">
+          Estos son <span class="font-medium">algunos</span> de nuestros clientes dentro del ecosistema de pagos.
+        </p>
+      </div>
+      <div class="flex items-center gap-3 text-[#575756]">
+        <span class="inline-block h-[3px] w-12 rounded-full bg-[#B41A1D]"></span>
+        <span class="text-xs uppercase tracking-widest">#WeCreateToInnovate</span>
+      </div>
+    </header>
+
+    <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6" role="list">
+      {partners.map((p) => (
+        <li class="group relative flex h-20 items-center justify-center rounded-2xl bg-white/80 p-4 shadow-sm ring-1 ring-black/5 backdrop-blur">
+          <Image
+            src={p.src}
+            alt={p.alt}
+            class="max-h-10 w-auto object-contain opacity-70 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+            loading="lazy"
+          />
+        </li>
+      ))}
+    </ul>
+
+    <p class="mt-8 flex items-center gap-3 text-xs text-[#575756]">
+      <span class="h-2 w-2 rounded-full bg-[#B41A1D]"></span>
+      <span>Algunos clientes destacados: BBVA, Niubiz, Ueno Bank, Telefónica, Falabella y Kushki.</span>
+    </p>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const items = document.querySelectorAll<HTMLLIElement>("#clients li");
+  const decor = document.querySelectorAll<SVGElement>("#clients svg");
+
+  gsap.from(items, {
+    opacity: 0,
+    y: 12,
+    duration: 0.4,
+    stagger: 0.04,
+    ease: "power2.out",
+    scrollTrigger: { trigger: "#clients", start: "top 80%", once: true },
+  });
+
+  decor.forEach((el, i) => {
+    gsap.to(el, {
+      y: i % 2 === 0 ? -12 : 12,
+      rotate: i % 2 === 0 ? 2 : -2,
+      ease: "none",
+      scrollTrigger: { trigger: "#clients", start: "top bottom", end: "bottom top", scrub: 0.5 },
+    });
+  });
+</script>
