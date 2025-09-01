@@ -1,0 +1,67 @@
+---
+interface Props {
+  lang: "es" | "en";
+  pathname: string; // e.g. /es/nosotros
+}
+
+const { lang, pathname } = Astro.props;
+
+// Tabla de mapeo ES <-> EN (agrega más según necesites)
+const slugMap = {
+  es: {
+    "/es": "/en",
+    "/es/": "/en/",
+    "/es/nosotros": "/en/about",
+    "/es/fabrica": "/en/factory",
+    "/es/contacto": "/en/contact",
+  },
+  en: {
+    "/en": "/es",
+    "/en/": "/es/",
+    "/en/about": "/es/nosotros",
+    "/en/factory": "/es/fabrica",
+    "/en/contact": "/es/contacto",
+  },
+} as const;
+
+type Lang = keyof typeof slugMap;
+type SlugMap = Record<string, string>;
+
+function resolveTarget(toLang: Lang, currentPath: string) {
+  // normaliza sin trailing slash doble
+  const key = currentPath.replace(/\/+$/, (m) => (m === "/" ? "/" : ""));
+  // type-safe lookup
+  const map: SlugMap = slugMap[lang as Lang];
+  const direct = map[key];
+  if (direct) return direct;
+
+  // fallback a home del otro idioma
+  return toLang === "es" ? "/es" : "/en";
+}
+
+const other = lang === "es" ? "en" : "es";
+const targetHref = resolveTarget(other, pathname);
+---
+
+<nav aria-label="Language switcher" class="flex items-center gap-2">
+  <a
+    href="/es"
+    onclick={`try{localStorage.setItem('rp_lang','es')}catch(e){}`}
+    class={`px-3 py-1.5 rounded-xl border text-sm ${
+      lang === "es"
+        ? "bg-[#B41A1D] text-white border-transparent"
+        : "border-[#575756] text-[#575756] hover:bg-[#B41A1D]/10 hover:text-[#B41A1D]"
+    }`}
+  >ES</a>
+
+  <!-- <a
+    href="/en"
+    onclick={`try{localStorage.setItem('rp_lang','en')}catch(e){}`}
+    class={`px-3 py-1.5 rounded-xl border text-sm ${
+      lang === "en"
+        ? "bg-[#B41A1D] text-white border-transparent"
+        : "border-[#575756] text-[#575756] hover:bg-[#B41A1D]/10 hover:text-[#B41A1D]"
+    }`}
+  >EN</a> -->
+
+</nav>

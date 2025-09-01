@@ -1,0 +1,266 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import partner1 from "../../assets/socio-1.jpg";
+import partner2 from "../../assets/socio-2.jpg";
+import partner3 from "../../assets/socio-3.jpg";
+
+/* Página: Nosotros — Red Pontis */
+
+type Pillar = { title: string; desc: string; icon: string };
+const pilares: Pillar[] = [
+  { title: "Innovación aplicada", desc: "Construimos y mejoramos productos con foco en impacto medible, no solo prototipos.", icon: "fa-solid fa-flask" },
+  { title: "Seguridad primero", desc: "Diseño bajo cumplimiento y buenas prácticas: cifrado, segregación y auditoría.", icon: "fa-solid fa-shield-halved" },
+  { title: "Escalabilidad real", desc: "Arquitecturas orientadas a alto volumen, resiliencia y observabilidad end-to-end.", icon: "fa-solid fa-layer-group" },
+  { title: "Time-to-market", desc: "Orquestación de proveedores y automatización para lanzar e iterar más rápido.", icon: "fa-regular fa-clock" }
+];
+
+type Valor = { title: string; desc: string; icon: string };
+const valores: Valor[] = [
+  { title: "Transparencia", desc: "Comunicación clara, decisiones trazables y foco en la confianza.", icon: "fa-regular fa-eye" },
+  { title: "Excelencia", desc: "Criterio técnico alto y mejora continua en cada entrega.", icon: "fa-solid fa-star" },
+  { title: "Colaboración", desc: "Equipos multidisciplinares, co-creación con clientes y partners.", icon: "fa-solid fa-people-group" },
+  { title: "Propiedad", desc: "Responsabilidad desde el diseño hasta la operación en vivo.", icon: "fa-solid fa-handshake" },
+  { title: "Aprendizaje", desc: "Feedback constante, postmortems y documentación útil.", icon: "fa-solid fa-book-open" },
+  { title: "Simpleza", desc: "Soluciones directas que reducen complejidad y deuda técnica.", icon: "fa-solid fa-feather" }
+];
+
+/** Helper para títulos estilo brand (eyebrow + H2 con parte en rojo) */
+
+---
+
+<Layout>
+  <!-- HERO -->
+  <section id="about-hero" class="relative overflow-hidden bg-white">
+    <!-- glows -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute -top-24 left-1/2 h-[44rem] w-[44rem] -translate-x-1/2 rounded-full bg-[#B41A1D]/10 blur-3xl"></div>
+      <div class="absolute bottom-[-20%] right-[-10%] h-[36rem] w-[36rem] rounded-full bg-[#575756]/10 blur-3xl"></div>
+      <div class="absolute inset-0 [background:radial-gradient(transparent_1px,#ffffff_1px)] [background-size:28px_28px] opacity-[0.35]"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-4 md:px-6 pt-28 md:pt-36 pb-16">
+      <header class="text-center mx-auto max-w-3xl">
+        <div class="flex items-center justify-center gap-3 text-[0.8rem] tracking-widest uppercase text-[#575756]">
+          <span class="inline-block h-[3px] w-8 rounded-full bg-[#B41A1D]"></span>
+          <span>Nosotros</span>
+        </div>
+        <h1 class="heavitas mt-3 text-4xl md:text-5xl leading-tight text-[#121212]">
+          Más que software:
+          <span class="text-[#B41A1D]">una experiencia completa</span>
+        </h1>
+        <p class="mt-4 text-[#575756] md:text-lg">
+          Diseñamos, integramos y operamos soluciones para acelerar la innovación con seguridad y escala.
+        </p>
+      </header>
+    </div>
+  </section>
+
+  <!-- QUIÉNES SOMOS -->
+  <section id="quienes-somos" class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16">
+      <div class="grid gap-8 md:grid-cols-12 items-center">
+        <div class="md:col-span-6">
+          <div  class="heavitas text-3xl  leading-tight text-[#121212]">
+            Somos una fábrica de software especializada en el ecosistema de pagos.
+          </div>
+          <p class="mt-4 text-[#575756]">
+            Nacimos para conectar estrategia y ejecución. Combinamos experiencia en
+            arquitectura, cumplimiento y UX para entregar plataformas confiables y listas para crecer.
+            Integramos canales, orquestamos proveedores y automatizamos operaciones para reducir fricción y acelerar el time-to-market.
+          </p>
+          <ul class="mt-6 space-y-3 text-[#575756]">
+            <li class="flex gap-3">
+              <i class="fa-solid fa-diagram-project mt-0.5 text-[#B41A1D]"></i>
+              Diseño → Implementación → Operación.
+            </li>
+            <li class="flex gap-3">
+              <i class="fa-solid fa-microscope mt-0.5 text-[#B41A1D]"></i>
+              Observabilidad, calidad y seguridad como estándar.
+            </li>
+            <li class="flex gap-3">
+              <i class="fa-solid fa-road mt-0.5 text-[#B41A1D]"></i>
+              Roadmaps iterativos con entregas de valor.
+            </li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-6">
+          <div class="rounded-3xl border border-[#575756]/20 p-6 shadow-sm">
+            <h3 class="sr-only">Pilares</h3>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {
+                pilares.map((p) => (
+                  <article class="rounded-2xl bg-white p-4 ring-1 ring-black/5 hover:-translate-y-0.5 hover:shadow-md transition">
+                    <div class="flex items-start gap-3">
+                      <div class="grid size-10 place-items-center rounded-xl bg-[#B41A1D]/10 ring-1 ring-[#B41A1D]/20" aria-hidden="true">
+                        <i class={p.icon + " text-[18px] text-[#B41A1D]"}></i>
+                      </div>
+                      <div>
+                        <h4 class="heavitas text-[#B41A1D]">{p.title}</h4>
+                        <p class="mt-1 text-sm text-[#575756] leading-relaxed">{p.desc}</p>
+                      </div>
+                    </div>
+                  </article>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section id="valores" class="relative overflow-hidden bg-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute -top-24 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-[#B41A1D]/10 blur-3xl"></div>
+    </div>
+    <div class="relative mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16">
+      <div class="text-center">
+        <div class="flex items-center justify-center gap-3 text-[0.8rem] tracking-widest uppercase text-[#575756]">
+          <span class="inline-block h-[3px] w-8 rounded-full bg-[#B41A1D]"></span>
+          <span>Valor agregado</span>
+        </div>
+        <h2 class="heavitas mt-3 text-3xl md:text-4xl leading-[1.1] text-[#121212]">
+          Más que pagos:
+          <span class="text-[#B41A1D]">una experiencia completa</span>
+        </h2>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {
+          valores.map((v) => (
+            <article class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-md">
+              <div class="flex items-start gap-3">
+                <div class="grid size-10 place-items-center rounded-xl bg-white ring-1 ring-[#575756]/15" aria-hidden="true">
+                  <i class={v.icon + " text-[18px] text-[#575756]"}></i>
+                </div>
+                <div>
+                  <h3 class="heavitas text-lg text-[#B41A1D]">{v.title}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-[#575756]">{v.desc}</p>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- GERENTES (3, mismo tamaño, rostro visible) -->
+  <section id="gerentes" class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16">
+      <div class="mb-6">
+        <div class="flex items-center gap-3 text-[0.8rem] tracking-widest uppercase text-[#575756]">
+          <span class="inline-block h-[3px] w-8 rounded-full bg-[#B41A1D]"></span>
+          <span>Equipo</span>
+        </div>
+        <h2 class="heavitas mt-3 text-3xl md:text-4xl leading-[1.1] text-[#121212]">
+          Gerencia <span class="text-[#B41A1D]">Red Pontis</span>
+        </h2>
+      </div>
+
+      <!-- Nota técnica:
+           - aspect-[3/4]: formato retrato consistente.
+           - object-contain + p-2: evita cortar rostros; mantiene proporciones.
+           - bg-[#575756]/10: relleno neutro cuando sobran márgenes. -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <article class="group rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-md">
+          <figure class="aspect-[3/4] w-full overflow-hidden rounded-xl bg-[#575756]/10 ring-1 ring-[#575756]/10 grid place-items-center">
+            <Image src={partner1} alt="Gerente 1" class="w-full h-full object-contain object-center p-2" />
+          </figure>
+          <div class="mt-4">
+            <h3 class="heavitas text-[#B41A1D] text-lg">Nombre del gerente</h3>
+            <p class="text-sm text-[#575756]">Puesto / Área</p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="group rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-md">
+          <figure class="aspect-[3/4] w-full overflow-hidden rounded-xl bg-[#575756]/10 ring-1 ring-[#575756]/10 grid place-items-center">
+            <Image src={partner2} alt="Gerente 2" class="w-full h-full object-contain object-center p-2" />
+          </figure>
+          <div class="mt-4">
+            <h3 class="heavitas text-[#B41A1D] text-lg">Nombre del gerente</h3>
+            <p class="text-sm text-[#575756]">Puesto / Área</p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="group rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-md">
+          <figure class="aspect-[3/4] w-full overflow-hidden rounded-xl bg-[#575756]/10 ring-1 ring-[#575756]/10 grid place-items-center">
+            <Image src={partner3} alt="Gerente 3" class="w-full h-full object-contain object-center p-2" />
+          </figure>
+          <div class="mt-4">
+            <h3 class="heavitas text-[#B41A1D] text-lg">Nombre del gerente</h3>
+            <p class="text-sm text-[#575756]">Puesto / Área</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="about-cta" class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16">
+      <div class="rounded-3xl bg-gradient-to-r from-[#B41A1D]/10 to-[#575756]/10 ring-1 ring-[#575756]/20 p-8 md:p-10 text-center">
+        <h2 class="heavitas text-2xl md:text-3xl text-[#121212]">
+          Construyamos algo que importe
+        </h2>
+        <p class="mt-3 text-[#575756]">
+          Hablemos de tus objetivos y cómo acelerar el camino de la idea al lanzamiento.
+        </p>
+        <a href="/contacto" class="inline-flex mt-6 items-center justify-center gap-2 rounded-xl px-5 py-3 bg-[#B41A1D] text-white heavitas hover:brightness-95 focus:outline-none focus:ring-4 focus:ring-[#B41A1D]/30">
+          <i class="fa-solid fa-paper-plane"></i>
+          Contáctanos
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function reveal(selector: string, baseDelay = 0.06) {
+    const items = document.querySelectorAll<HTMLElement>(selector);
+    items.forEach((el, i) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: reduce ? 0 : 18,
+        duration: 0.6,
+        delay: i * baseDelay,
+        ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 85%", once: true }
+      });
+    });
+  }
+
+  // Secciones con stagger
+  reveal("#quienes-somos article");
+  reveal("#valores article", 0.04);
+  reveal("#gerentes article", 0.05);
+
+  // Parallax sutil en el glow del hero
+  if (!reduce) {
+    const glow = document.querySelector<HTMLElement>("#about-hero .absolute.-top-24");
+    if (glow) {
+      gsap.to(glow, {
+        yPercent: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#about-hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 0.4
+        }
+      });
+    }
+  }
+</script>

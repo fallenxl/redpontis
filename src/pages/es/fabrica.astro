@@ -1,0 +1,275 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+/* Fabrica.astro — Página completa (refactor) */
+type Card = { title: string; desc: string };
+
+const cardPresente: Card[] = [
+  {
+    title: "POS / mPOS",
+    desc: "Terminales físicas y móviles con chip, banda y contactless. Integración a backoffice y reportería."
+  },
+  {
+    title: "Tap to Phone (marca blanca)",
+    desc: "Aceptación contactless en smartphones. Onboarding ágil, KYC y administración centralizada."
+  },
+  {
+    title: "Eloop en tienda",
+    desc: "Digitalización de depósitos, retiros, conciliaciones y auditoría con trazabilidad."
+  },
+  {
+    title: "Tokenización presencial",
+    desc: "Vault seguro para reutilización de tarjetas y experiencias omnicanal."
+  }
+];
+
+const cardNoPresente: Card[] = [
+  {
+    title: "Payment Gateway",
+    desc: "Pasarela para ecommerce con antifraude, 3DS, split, multi-adquirente y fallback."
+  },
+  {
+    title: "Cobros recurrentes",
+    desc: "Motor de suscripciones con prorrateo, retiros programados y alertas de falla."
+  },
+  {
+    title: "RT-Payments (Visa Direct / MC Send)",
+    desc: "Envío y recepción de fondos 24/7 para devoluciones, dispersión y remesas."
+  },
+  {
+    title: "Billetera móvil + QR",
+    desc: "QR estático/dinámico, NFC, loyalty y pagos de servicios con UX ágil."
+  }
+];
+
+const cardValorAgregado: Card[] = [
+  {
+    title: "Analytics",
+    desc: "Paneles de conversión, rutas de fallo y cohortes por canal, producto y comercio."
+  },
+  {
+    title: "Fraude & Riesgo",
+    desc: "Reglas dinámicas, listas y conexión con proveedores externos."
+  },
+  {
+    title: "Backoffice",
+    desc: "Gestión de comercios, liquidaciones, ajustes y reclamos."
+  },
+  {
+    title: "Compliance",
+    desc: "PCI DSS / PCI PIN, ISO 9001 / 37001 y mejores prácticas de seguridad."
+  }
+];
+---
+
+<Layout>
+  <!-- Hero -->
+  <section id="fab-hero" class="relative overflow-hidden flex items-center" style="min-height: 80vh;">
+    <!-- Glows -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute -top-24 left-1/2 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-[#B41A1D]/10 blur-3xl"></div>
+      <div class="absolute -bottom-24 -right-24 h-[32rem] w-[32rem] rounded-full bg-[#575756]/10 blur-3xl"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-4 md:px-6 pt-28 md:py-36 pb-14">
+      <header class="text-center mx-auto max-w-3xl">
+        <h1 class="heavitas text-4xl md:text-5xl leading-tight text-[#121212]">
+          Desde el diseño hasta la implementación,
+        </h1>
+        <p class="mt-2 heavitas text-2xl md:text-3xl text-[#B41A1D]">
+          desarrollamos software flexible y seguro
+        </p>
+        <p class="mt-4 text-[#575756] md:text-lg">
+          Orquestamos canales y proveedores para acelerar el time-to-market con seguridad y escalabilidad.
+        </p>
+      </header>
+    </div>
+  </section>
+
+  <!-- Soluciones Red Pontis -->
+  <!-- <section id="soluciones" class="relative bg-white">
+    <div class="mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16">
+      <h2 class="heavitas text-center text-2xl md:text-3xl text-[#121212]">
+        Soluciones Red Pontis
+      </h2>
+
+      <article
+        id="ecore"
+        class="mt-8 mx-auto max-w-3xl rounded-3xl border border-[#575756]/20 bg-white p-6 shadow-sm"
+        aria-labelledby="ecore-title"
+      >
+        <h3 id="ecore-title" class="sr-only">eCore Switch</h3>
+
+        <figure class="w-full rounded-2xl bg-white ring-1 ring-[#575756]/15">
+          <svg
+            viewBox="0 0 800 450"
+            role="img"
+            aria-label="Diagrama simplificado de orquestación eCore"
+            class="w-full h-auto"
+          >
+            <defs>
+              <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#B41A1D" stop-opacity="0.12" />
+                <stop offset="100%" stop-color="#575756" stop-opacity="0.12" />
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="800" height="450" fill="url(#rg)"/>
+            
+            <g fill="#121212">
+              <rect x="60" y="80" rx="10" ry="10" width="170" height="60" fill="#fff"/>
+              <text x="145" y="118" text-anchor="middle" font-size="14">Canales</text>
+
+              <rect x="315" y="185" rx="14" ry="14" width="170" height="80" fill="#fff" stroke="#B41A1D" stroke-width="2"/>
+              <text x="400" y="232" text-anchor="middle" font-size="14">eCore Switch</text>
+
+              <rect x="570" y="80" rx="10" ry="10" width="170" height="60" fill="#fff"/>
+              <text x="655" y="118" text-anchor="middle" font-size="14">HOST Resolutores</text>
+            </g>
+            
+            <g stroke="#575756" stroke-width="2" fill="none">
+              <path d="M230 110 C 300 110, 300 225, 315 225" />
+              <path d="M485 225 C 500 225, 500 110, 570 110" />
+            
+              <polygon points="315,225 307,220 307,230" fill="#575756"/>
+              <polygon points="570,110 562,105 562,115" fill="#575756"/>
+            </g>
+          </svg>
+          <figcaption class="sr-only">Orquesta transacciones desde múltiples canales hacia diferentes hosts.</figcaption>
+        </figure>
+
+        <p class="mt-4 text-[#575756] md:text-base">
+          <b class="text-[#121212]">eCore Switch:</b> orquesta transacciones entre proveedores y comunica múltiples canales con distintos <span class="whitespace-nowrap">HOST resolutores</span>, habilitando enrute, fallback y observabilidad end-to-end.
+        </p>
+      </article>
+    </div>
+  </section> -->
+
+  <!-- Tarjeta Presente -->
+  <section id="tarjeta-presente" class="relative bg-white">
+    <div class="mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16">
+      <h3 class="heavitas text-xl md:text-2xl text-[#121212]">Tarjeta presente</h3>
+
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {
+          cardPresente.map((c) => (
+            <article class="fab-card group rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5 transition will-change-transform focus-within:ring-[#B41A1D]/40 hover:-translate-y-1 hover:shadow-md">
+              <div class="flex items-start gap-3">
+                <!-- ícono genérico -->
+                <div class="grid size-10 place-items-center rounded-xl bg-[#B41A1D]/10 ring-1 ring-[#B41A1D]/20" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" class="size-5"><rect x="3" y="7" width="18" height="10" rx="2" fill="#B41A1D"/></svg>
+                </div>
+                <div>
+                  <h4 class="heavitas text-[#B41A1D] text-lg">{c.title}</h4>
+                  <p class="mt-1 text-[#575756] text-sm leading-relaxed">{c.desc}</p>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Tarjeta No Presente -->
+  <section id="tarjeta-no-presente" class="relative bg-white">
+    <div class="mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16">
+      <h3 class="heavitas text-xl md:text-2xl text-[#121212]">Tarjeta no presente</h3>
+
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {
+          cardNoPresente.map((c) => (
+            <article class="fab-card group rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5 transition will-change-transform focus-within:ring-[#B41A1D]/40 hover:-translate-y-1 hover:shadow-md">
+              <div class="flex items-start gap-3">
+                <div class="grid size-10 place-items-center rounded-xl bg-[#575756]/10 ring-1 ring-[#575756]/20" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" class="size-5"><circle cx="12" cy="12" r="9" fill="#575756"/></svg>
+                </div>
+                <div>
+                  <h4 class="heavitas text-[#B41A1D] text-lg">{c.title}</h4>
+                  <p class="mt-1 text-[#575756] text-sm leading-relaxed">{c.desc}</p>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Valor agregado -->
+  <section id="valor-agregado" class="relative overflow-hidden bg-white">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute -top-24 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-[#B41A1D]/10 blur-3xl"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16">
+      <h3 class="heavitas text-xl md:text-2xl text-[#121212]">Valor agregado</h3>
+
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {
+          cardValorAgregado.map((c) => (
+            <article class="va-card group relative rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5 transition will-change-transform hover:-translate-y-1 hover:shadow-md">
+              <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#B41A1D] to-[#575756] opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
+              <div class="flex items-start gap-3">
+                <div class="grid size-10 place-items-center rounded-xl bg-white ring-1 ring-[#575756]/15" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" class="size-5"><path d="M4 12h16M12 4v16" stroke="#575756" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <h4 class="heavitas text-[#B41A1D] text-lg">{c.title}</h4>
+                  <p class="mt-1 text-[#575756] text-sm leading-relaxed">{c.desc}</p>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Respeta preferencias de movimiento reducidas
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Utilidad: anima una lista de elementos con stagger on-scroll
+  function revealOnScroll(selector: string, options?: Partial<gsap.TweenVars>) {
+    const els = document.querySelectorAll<HTMLElement>(selector);
+    els.forEach((el, i) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: prefersReducedMotion ? 0 : 18,
+        duration: 0.6,
+        delay: i * 0.06,
+        ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 85%", once: true },
+        ...options
+      });
+    });
+  }
+
+  // Secciones
+  revealOnScroll("#soluciones article");
+  revealOnScroll("#tarjeta-presente .fab-card");
+  revealOnScroll("#tarjeta-no-presente .fab-card");
+  revealOnScroll("#valor-agregado .va-card");
+
+  // Pequeño parallax suave para el glow del hero (si no reduce motion)
+  if (!prefersReducedMotion) {
+    const glow = document.querySelector<HTMLElement>("#fab-hero .absolute.-top-24");
+    if (glow) {
+      gsap.to(glow, {
+        yPercent: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#fab-hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 0.4
+        }
+      });
+    }
+  }
+</script>

@@ -1,25 +1,97 @@
 ---
-import Hero from "../components/Hero.astro";
-import Layout from "../layouts/Layout.astro";
-import ValueAdd from "../components/ValueAdd.astro";
-import ClientsStrip from "../components/ClientsStrip.astro";
-import FactoryOverview from "../components/FactoryOverview.astro";
-import GeoPresence from "../components/GeoPresence.astro";
-import SuccessTimeline from "../components/SuccessTimeline.astro";
-import ContactCTA from "../components/ContactCTA.astro";
-import JoiSolutionsCTA from "../components/JoiSolutionsCTA.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const SUPPORTED = ["es", "en"] as const;
+const DEFAULT_LANG = "es";
 ---
 
-<Layout>
-  <Hero />
-  <ClientsStrip />
-  <ValueAdd />
-  <FactoryOverview />
-  <GeoPresence />
-  <!-- <SuccessTimeline /> -->
-  <!-- <JoiSolutionsCTA/> -->
-  <ContactCTA/>
-</Layout>
+<!doctype html>
+<html lang={DEFAULT_LANG}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>RedPontis</title>
+    <meta name="robots" content="noindex,follow" />
+
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+      }
+
+      .loader {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 8px solid #575756; /* gris */
+        border-top-color: #B41A1D;  /* rojo */
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .brand-text {
+        position: absolute;
+        bottom: 40px;
+        font-family: "Heavitas", sans-serif;
+        font-size: 1.2rem;
+        color: #575756;
+        letter-spacing: 1px;
+      }
+    </style>
+
+    <!-- Redirección client-side -->
+    <script is:inline>
+      (function () {
+        var SUPPORTED = ["es","en"];
+        var DEFAULT_LANG = "es";
+
+        function hasLangPrefix(path) {
+          return SUPPORTED.some(function(l){
+            return path === ("/" + l) || path.startsWith("/" + l + "/");
+          });
+        }
+
+        var loc = window.location;
+        var path = loc.pathname;
+
+        if (hasLangPrefix(path)) return;
+
+        var params = new URLSearchParams(loc.search);
+        var paramLang = params.get("lang");
+        var fromQuery = SUPPORTED.includes((paramLang || "").toLowerCase()) ? paramLang.toLowerCase() : null;
+
+        var stored = null;
+        try { stored = localStorage.getItem("rp_lang") || null; } catch(_) {}
+        var fromStorage = SUPPORTED.includes((stored || "").toLowerCase()) ? stored.toLowerCase() : null;
+
+        var navGuess = (navigator.language || navigator.userLanguage || DEFAULT_LANG).slice(0,2).toLowerCase();
+        var fromNavigator = SUPPORTED.includes(navGuess) ? navGuess : DEFAULT_LANG;
+
+        var lang = fromQuery || fromStorage || fromNavigator || DEFAULT_LANG;
+
+        try { localStorage.setItem("rp_lang", lang); } catch(_) {}
+
+        var target =
+          "/" + lang +
+          (path === "/" ? "" : path) +
+          (loc.search || "") +
+          (loc.hash || "");
+
+        setTimeout(function(){
+          window.location.replace(target);
+        }, 1200); // pequeño delay para que se vea el loader
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div class="loader"></div>
+    <div class="brand-text">#WeCreateToInnovate</div>
+  </body>
+</html>
