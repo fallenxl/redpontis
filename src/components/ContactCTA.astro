@@ -1,65 +1,68 @@
 ---
+// ContactCTA.astro
 const action = "/contacto"; // adapta a tu endpoint real
 ---
 
 <section id="contact" class="relative overflow-hidden bg-[#B41A1D]">
-  <!-- Decor de fondo: auroras + “R”s de marca -->
+  <!-- decor fondo -->
   <div class="pointer-events-none absolute inset-0">
     <div class="absolute -top-24 -left-24 h-[32rem] w-[32rem] rounded-full bg-white/10 blur-3xl"></div>
     <div class="absolute -bottom-32 -right-24 h-[28rem] w-[28rem] rounded-full bg-[#575756]/20 blur-3xl"></div>
   </div>
 
-
   <div class="relative mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-24">
-    <!-- Card -->
     <div class="contact-card grid grid-cols-1 overflow-hidden rounded-3xl bg-white/90 backdrop-blur shadow-xl ring-1 ring-black/5 md:grid-cols-5">
       <!-- Col info -->
       <aside class="relative col-span-2 flex flex-col justify-between bg-white/50 p-8 md:p-10">
         <div>
           <p class="text-xs md:text-sm uppercase tracking-widest text-[#575756] flex items-center gap-2">
-            <span class="inline-block h-[3px] w-8 rounded bg-[#B41A1D]"></span> Hablemos
+            <span class="inline-block h-[3px] w-8 rounded bg-[#B41A1D]"></span>
+            <span data-i18n="contact.kicker">Hablemos</span>
           </p>
-          <h2 class="heavitas mt-2 text-3xl md:text-4xl text-[#B41A1D] leading-tight">¿Listo para crear?</h2>
-          <p class="mt-3 text-[#575756]">
+
+          <h2 class="heavitas mt-2 text-3xl md:text-4xl text-[#B41A1D] leading-tight" data-i18n="contact.title">¿Listo para crear?</h2>
+
+          <p class="mt-3 text-[#575756]" data-i18n="contact.desc" data-i18n-html>
             Cuéntanos tu desafío y te contactaremos pronto. Resolvemos proyectos <span class="font-medium">a medida</span> para el ecosistema de pagos.
           </p>
 
-          <!-- Bullets de valor -->
+          <!-- Bullets -->
           <ul class="mt-6 space-y-3 text-[#121212]">
             <li class="flex items-start gap-3">
               <span class="grid place-items-center h-9 w-9 rounded-xl bg-[#B41A1D]/10 text-[#B41A1D]"><i class="fa-solid fa-bolt"></i></span>
-              <span class="text-sm"><b>Respuesta ágil</b> y briefing claro.</span>
+              <span class="text-sm" data-i18n="contact.bullets.0" data-i18n-html><b>Respuesta ágil</b> y briefing claro.</span>
             </li>
             <li class="flex items-start gap-3">
               <span class="grid place-items-center h-9 w-9 rounded-xl bg-[#B41A1D]/10 text-[#B41A1D]"><i class="fa-solid fa-shield-halved"></i></span>
-              <span class="text-sm">Enfoque <b>seguro</b> y cumplimiento.</span>
+              <span class="text-sm" data-i18n="contact.bullets.1" data-i18n-html>Enfoque <b>seguro</b> y cumplimiento.</span>
             </li>
             <li class="flex items-start gap-3">
               <span class="grid place-items-center h-9 w-9 rounded-xl bg-[#B41A1D]/10 text-[#B41A1D]"><i class="fa-solid fa-diagram-project"></i></span>
-              <span class="text-sm">Implementación <b>escalable</b> y soporte.</span>
+              <span class="text-sm" data-i18n="contact.bullets.2" data-i18n-html>Implementación <b>escalable</b> y soporte.</span>
             </li>
           </ul>
         </div>
 
         <!-- Badges -->
         <div class="mt-8 flex flex-wrap items-center gap-2 text-xs text-[#575756]">
-          <span class="rounded-full border border-[#575756]/20 bg-white px-3 py-1">PCI DSS / PCI PIN</span>
-          <span class="rounded-full border border-[#575756]/20 bg-white px-3 py-1">ISO 9001</span>
-          <span class="rounded-full border border-[#575756]/20 bg-white px-3 py-1">ISO 37001</span>
+          <span class="rounded-full border border-[#575756]/20 bg-white px-3 py-1" data-i18n="contact.badges.0">PCI DSS / PCI PIN</span>
+          <span class="rounded-full border border-[#575756]/20 bg-white px-3 py-1" data-i18n="contact.badges.1">ISO 9001</span>
+          <span class="rounded-full border border-[#575756]/20 bg-white px-3 py-1" data-i18n="contact.badges.2">ISO 37001</span>
         </div>
       </aside>
 
       <!-- Col formulario -->
       <div class="col-span-3 bg-white p-8 md:p-10">
         <form action={action} method="post" class="form grid grid-cols-1 gap-4">
-          <!-- Honeypot anti-spam -->
+          <!-- Honeypot -->
           <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" />
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Campo Nombre -->
+            <!-- Nombre -->
             <label class="block">
               <span class="mb-1 inline-flex items-center gap-2 text-sm text-[#575756]">
-                <i class="fa-regular fa-user"></i> Nombre
+                <i class="fa-regular fa-user"></i>
+                <span data-i18n="contact.form.name.label">Nombre</span>
               </span>
               <input
                 name="name"
@@ -67,13 +70,16 @@ const action = "/contacto"; // adapta a tu endpoint real
                 placeholder="Tu nombre"
                 class="peer w-full rounded-xl border border-[#575756]/30 bg-white px-4 py-3 text-[#121212] outline-none transition
                        focus:ring-2 focus:ring-[#B41A1D]/30 focus:border-[#B41A1D]"
+                data-i18n-attr="placeholder"
+                data-i18n-placeholder="contact.form.name.placeholder"
               />
             </label>
 
-            <!-- Campo Email -->
+            <!-- Email -->
             <label class="block">
               <span class="mb-1 inline-flex items-center gap-2 text-sm text-[#575756]">
-                <i class="fa-regular fa-envelope"></i> Email
+                <i class="fa-regular fa-envelope"></i>
+                <span data-i18n="contact.form.email.label">Email</span>
               </span>
               <input
                 type="email"
@@ -82,6 +88,8 @@ const action = "/contacto"; // adapta a tu endpoint real
                 placeholder="tucorreo@ejemplo.com"
                 class="peer w-full rounded-xl border border-[#575756]/30 bg-white px-4 py-3 text-[#121212] outline-none transition
                        focus:ring-2 focus:ring-[#B41A1D]/30 focus:border-[#B41A1D]"
+                data-i18n-attr="placeholder"
+                data-i18n-placeholder="contact.form.email.placeholder"
               />
             </label>
           </div>
@@ -89,20 +97,24 @@ const action = "/contacto"; // adapta a tu endpoint real
           <!-- Empresa -->
           <label class="block">
             <span class="mb-1 inline-flex items-center gap-2 text-sm text-[#575756]">
-              <i class="fa-regular fa-building"></i> Empresa (opcional)
+              <i class="fa-regular fa-building"></i>
+              <span data-i18n="contact.form.company.label">Empresa (opcional)</span>
             </span>
             <input
               name="company"
               placeholder="Tu empresa"
               class="peer w-full rounded-xl border border-[#575756]/30 bg-white px-4 py-3 text-[#121212] outline-none transition
                      focus:ring-2 focus:ring-[#B41A1D]/30 focus:border-[#B41A1D]"
+              data-i18n-attr="placeholder"
+              data-i18n-placeholder="contact.form.company.placeholder"
             />
           </label>
 
           <!-- Mensaje -->
           <label class="block">
             <span class="mb-1 inline-flex items-center gap-2 text-sm text-[#575756]">
-              <i class="fa-regular fa-message"></i> Mensaje
+              <i class="fa-regular fa-message"></i>
+              <span data-i18n="contact.form.message.label">Mensaje</span>
             </span>
             <textarea
               name="message"
@@ -111,12 +123,14 @@ const action = "/contacto"; // adapta a tu endpoint real
               placeholder="Cuéntanos brevemente tu proyecto o necesidad…"
               class="peer w-full rounded-xl border border-[#575756]/30 bg-white px-4 py-3 text-[#121212] outline-none transition
                      focus:ring-2 focus:ring-[#B41A1D]/30 focus:border-[#B41A1D] resize-y"
+              data-i18n-attr="placeholder"
+              data-i18n-placeholder="contact.form.message.placeholder"
             ></textarea>
           </label>
 
           <!-- Consent + Submit -->
           <div class="mt-2 flex flex-col-reverse items-start gap-4 md:flex-row md:items-center md:justify-between">
-            <label class="flex items-center gap-2 text-sm text-[#575756]">
+            <label class="flex items-center gap-2 text-sm text-[#575756]" data-i18n="contact.form.privacyHtml" data-i18n-html>
               <input type="checkbox" required class="h-4 w-4 rounded border-[#575756]/40 text-[#B41A1D] focus:ring-[#B41A1D]" />
               Acepto la <a href="/privacidad" class="underline decoration-[#B41A1D]/60 underline-offset-2 hover:text-[#B41A1D]">política de privacidad</a>.
             </label>
@@ -124,6 +138,7 @@ const action = "/contacto"; // adapta a tu endpoint real
             <button
               class="cta group inline-flex items-center gap-2 rounded-xl bg-[#B41A1D] px-6 py-3 text-white font-semibold
                      shadow-[0_8px_24px_rgba(180,26,29,0.35)] transition active:translate-y-px"
+              data-i18n="contact.form.submit"
             >
               <i class="fa-solid fa-paper-plane"></i>
               Enviar
@@ -141,23 +156,20 @@ const action = "/contacto"; // adapta a tu endpoint real
   import ScrollTrigger from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
-  // Tipado TS
   const card = document.querySelector<HTMLDivElement>(".contact-card");
   const form = document.querySelector<HTMLFormElement>("#contact form");
   const fields = form ? Array.from(form.querySelectorAll<HTMLElement>("label, .cta")) : [];
 
-  // Entrada de la card
   if (card) {
     gsap.from(card, {
       opacity: 0,
       y: 24,
       duration: 0.6,
       ease: "power3.out",
-      scrollTrigger: { trigger: card, start: "top 80%", once: true },
+      scrollTrigger: { trigger: card, start: "top 80%", once: true }
     });
   }
 
-  // Stagger de campos
   if (fields.length) {
     gsap.from(fields, {
       opacity: 0,
@@ -165,18 +177,12 @@ const action = "/contacto"; // adapta a tu endpoint real
       duration: 0.4,
       stagger: 0.06,
       ease: "power2.out",
-      scrollTrigger: { trigger: form!, start: "top 85%", once: true },
+      scrollTrigger: { trigger: form!, start: "top 85%", once: true }
     });
   }
 
-  // Micro-interacción: glow sutil al focusear cualquier input/textarea
-  const inputs = form ? Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input:not([type=checkbox]), textarea")) : [];
-  inputs.forEach((el) => {
-    el.addEventListener("focus", () => {
-      gsap.to(el, { boxShadow: "0 0 0 4px rgba(180,26,29,0.15)", duration: 0.18, ease: "power2.out" });
-    });
-    el.addEventListener("blur", () => {
-      gsap.to(el, { boxShadow: "0 0 0 0 rgba(0,0,0,0)", duration: 0.18, ease: "power2.inOut" });
-    });
+  // Re-aplicar solo este bloque al cambiar idioma
+  window.addEventListener("rp:langchange", () => {
+    (window as any).rpI18n?.apply?.(document.getElementById("contact")!);
   });
 </script>

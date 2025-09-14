@@ -3,57 +3,28 @@ import { Image } from "astro:assets";
 import LangSwitcher from "./LangSwitcher.astro";
 import logo from "../assets/logo.png";
 
-// 1) Detectar idioma por la URL (/es/... o /en/...)
-const path = Astro.url.pathname;
-const lang = path.startsWith("/en") ? "en" : "es";
+/** Helper activo por ruta (build-time) */
+const currentPath = Astro.url.pathname;
+const isActive = (p: string) =>
+  currentPath === p || (p !== "/" && currentPath.startsWith(p));
 
-// 2) Definir rutas por idioma (slugs localizados)
-const routes = {
-  es: {
-    home: "/es",
-    nosotros: "/es/nosotros",
-    fabrica: "/es/fabrica",
-    contacto: "/es/contacto",
-  },
-  en: {
-    home: "/en",
-    nosotros: "/en/about",
-    fabrica: "/en/factory",
-    contacto: "/en/contact",
-  },
-} as const;
-
-type NavItem = { path: string; label: string };
-
-// 3) Ítems del menú según idioma
-const links: NavItem[] =
-  lang === "es"
-    ? [
-        { path: routes.es.home, label: "Inicio" },
-        { path: routes.es.nosotros, label: "Nosotros" },
-        { path: routes.es.fabrica, label: "Fábrica" },
-      ]
-    : [
-        { path: routes.en.home, label: "Home" },
-        { path: routes.en.nosotros, label: "About" },
-        { path: routes.en.fabrica, label: "Factory" },
-        { path: routes.en.contacto, label: "Contact" },
-      ];
-
-// 4) Helper para estado activo
-function isActive(href: string) {
-  if (href === "/es" || href === "/en") return path === href || path === href + "/";
-  return path === href || path.startsWith(href + "/");
-}
+/** Rutas estáticas (no cambian con el idioma) pero con claves i18n para el label */
+type NavLink = { path: string; i18n: string };
+const links: NavLink[] = [
+  { path: "/",          i18n: "nav.home" },
+  { path: "/nosotros",  i18n: "nav.about" },
+  { path: "/fabrica",   i18n: "nav.factory" },
+  { path: "/contacto",  i18n: "nav.contact" },
+];
 ---
 
 <header id="siteHeader" class="fixed top-0 z-50 w-full bg-white/80 backdrop-blur border-b border-neutral-200/60 py-2">
   <nav class="mx-auto max-w-7xl px-4 md:px-6">
     <div class="flex h-16 items-center justify-between gap-4">
       <!-- Logo -->
-      <a href={routes[lang].home} class="flex items-center gap-3">
+      <a href="/" class="flex items-center gap-3">
         <Image src={logo} alt="Red Pontis" class="h-14 w-auto select-none" />
-        <span class="sr-only">Red Pontis</span>
+        <span class="sr-only" data-i18n="brand.name">Red Pontis</span>
       </a>
 
       <!-- Desktop -->
@@ -69,14 +40,14 @@ function isActive(href: string) {
                     : "text-[#575756] hover:text-[#B41A1D] hover:bg-[#B41A1D]/10"
                 }`}
               >
-                {l.label}
+                <span data-i18n={l.i18n}>Inicio</span>
               </a>
             </li>
           ))}
         </ul>
 
         <!-- Lang Switcher (desktop) -->
-        <LangSwitcher lang={lang as "es" | "en"} pathname={path} />
+        <LangSwitcher />
       </div>
 
       <!-- Toggle Móvil -->
@@ -86,8 +57,8 @@ function isActive(href: string) {
         aria-expanded="false"
         class="md:hidden inline-flex items-center justify-center rounded-lg border border-[#575756]/30 px-3 py-2 text-[#575756] hover:bg-[#575756]/10 active:scale-95 transition"
       >
-        <span class="sr-only">{lang === "es" ? "Abrir menú" : "Open menu"}</span>
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <span class="sr-only" data-i18n="ui.openMenu">Abrir menú</span>
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16" />
         </svg>
       </button>
@@ -98,8 +69,8 @@ function isActive(href: string) {
       <div class="my-3 rounded-2xl border border-[#575756]/20 bg-white shadow-sm">
         <!-- Lang Switcher Mobile -->
         <div class="px-4 py-3 border-b border-[#575756]/10 flex justify-between items-center">
-          <span class="text-sm text-[#575756]">{lang === "es" ? "Idioma" : "Language"}</span>
-          <LangSwitcher lang={lang as "es" | "en"} pathname={path} />
+          <span class="text-sm text-[#575756]" data-i18n="ui.language">Idioma</span>
+          <LangSwitcher />
         </div>
 
         <ul class="divide-y divide-[#575756]/10">
@@ -111,7 +82,7 @@ function isActive(href: string) {
                   isActive(l.path) ? "text-[#B41A1D]" : "text-[#575756] hover:text-[#B41A1D]"
                 }`}
               >
-                {l.label}
+                <span data-i18n={l.i18n}>Inicio</span>
               </a>
             </li>
           ))}
@@ -159,5 +130,10 @@ function isActive(href: string) {
   mobileMenu.addEventListener("click", (e: MouseEvent) => {
     const t = e.target as HTMLElement;
     if (t && t.closest("a")) closeMenu();
+  });
+
+  // Re-aplicar traducciones si cambia el idioma (por si se monta después)
+  window.addEventListener("rp:langchange", () => {
+    (window as any).rpI18n?.apply?.(document.getElementById("siteHeader")!);
   });
 </script>

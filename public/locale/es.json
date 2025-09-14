@@ -1,0 +1,235 @@
+{
+  "brand": { "name": "Red Pontis" },
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "factory": "Fábrica",
+    "contact": "Contacto"
+  },
+  "ui": { "openMenu": "Abrir menú", "language": "Idioma" },
+  "hero": {
+    "badge": "Fábrica de software para medios de pago",
+    "headline": "Lideramos la evolución del <span class='text-[#B41A1D]'>ecosistema de pagos</span>.",
+    "lead": "Soluciones innovadoras, ágiles y flexibles para optimizar operaciones, mejorar la experiencia del cliente e integrar tecnología avanzada con un enfoque estratégico en cada transacción.",
+    "hashtag": {
+      "chunk1": "#WeCreate",
+      "chunk2": "ToInnovate",
+      "subtitle": "Innovación con propósito: de la idea al despliegue."
+    },
+    "cta": {
+      "solutions": "Ver soluciones",
+      "contact": "Contáctanos"
+    },
+    "card": {
+      "title": "Más que pagos, valor real",
+      "desc": "Diseñamos, construimos y desplegamos plataformas seguras y escalables para adquirentes, fintechs y comercios.",
+      "list": [
+        "Certificaciones PCI DSS / PCI PIN",
+        "ISO 9001 / ISO 37001",
+        "Soluciones “marca blanca” y a medida"
+      ],
+      "cta": "Conócenos"
+    }
+  },
+  "valueAdd": {
+    "kicker": "Valor agregado",
+    "title": "Más que pagos: <span class='text-[#B41A1D]'>una experiencia completa</span>",
+    "subtitle": "Servicios y herramientas que potencian cada transacción, mejorando la eficiencia y la experiencia del usuario.",
+    "items": [
+      "Especializados en medios de pago",
+      "PaaS enabler para adquirentes y PFs",
+      "Soluciones integrales en marca blanca",
+      "Desarrollos a medida",
+      "Certificaciones PCI DSS / PCI PIN",
+      "ISO 9001 / ISO 37001"
+    ]
+  },
+    "factory": {
+    "kicker": "Fábrica de software",
+    "title": "Innovación sin límites",
+    "subtitle": "Combinamos experiencia y tecnología para diseñar software que impulsa la evolución del ecosistema de pagos, garantizando soluciones eficientes y seguras.",
+    "blocks": [
+      {
+        "title": "Tarjeta Presente",
+        "desc": "Transacciones con tarjeta física en POS/terminal mediante chip, banda o contactless."
+      },
+      {
+        "title": "Tarjeta No Presente",
+        "desc": "Pagos sin tarjeta física: compras online, pagos telefónicos o transacciones recurrentes."
+      },
+      {
+        "title": "Valor Agregado",
+        "desc": "Analítica, fidelización, financiamiento y seguridad para optimizar la gestión del negocio."
+      }
+    ]
+  },
+  "presence": {
+    "kicker": "Nuestra presencia",
+    "title": "Presencia en <span class='text-[#B41A1D]'>LATAM</span>",
+    "subtitle": "Operamos en múltiples países de la región, impulsando el ecosistema de pagos con soluciones ágiles y seguras.",
+    "mapAlt": "Mapa de presencia de Red Pontis en LATAM"
+  },
+   "footer": {
+    "hashtag": { "chunk1": "#WeCreate", "chunk2": "ToInnovate" },
+    "cta": "Hablemos",
+    "brandAlt": "Red Pontis",
+    "brandSrOnly": "Red Pontis",
+    "brandDesc": "Fábrica de software especializada en el ecosistema de pagos. Construimos plataformas seguras y escalables para adquirentes, fintechs y comercios en LATAM.",
+    "social": { "linkedin": "LinkedIn" },
+    "navTitle": "Navegación",
+    "nav": ["Inicio", "Nosotros", "Fábrica", "Contacto"],
+    "solutionsTitle": "Soluciones",
+    "solutions": [
+      "eCore Switch",
+      "Payment Gateway",
+      "Tap to Phone",
+      "Cobros Recurrentes",
+      "Billetera Móvil",
+      "Tokenización",
+      "Real Time Payments",
+      "Generador de QR"
+    ],
+    "legal": {
+      "rights": "Todos los derechos reservados.",
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    }
+  },
+   "contact": {
+    "kicker": "Hablemos",
+    "title": "¿Listo para crear?",
+    "desc": "Cuéntanos tu desafío y te contactaremos pronto. Resolvemos proyectos <b>a medida</b> para el ecosistema de pagos.",
+    "bullets": [
+      "<b>Respuesta ágil</b> y briefing claro.",
+      "Enfoque <b>seguro</b> y cumplimiento.",
+      "Implementación <b>escalable</b> y soporte."
+    ],
+    "badges": ["PCI DSS / PCI PIN", "ISO 9001", "ISO 37001"],
+    "form": {
+      "name": { "label": "Nombre", "placeholder": "Tu nombre" },
+      "email": { "label": "Email", "placeholder": "tucorreo@ejemplo.com" },
+      "company": { "label": "Empresa (opcional)", "placeholder": "Tu empresa" },
+      "message": { "label": "Mensaje", "placeholder": "Cuéntanos brevemente tu proyecto o necesidad…" },
+      "privacyHtml": "Acepto la <a href=\"/privacidad\" class=\"underline decoration-[#B41A1D]/60 underline-offset-2 hover:text-[#B41A1D]\">política de privacidad</a>.",
+      "submit": "Enviar"
+    }
+  },
+    "about": {
+    "hero": {
+      "kicker": "Nosotros",
+      "title": "Más que software: <span class='text-[#B41A1D]'>una experiencia completa</span>",
+      "subtitle": "Diseñamos, integramos y operamos soluciones para acelerar la innovación con seguridad y escala."
+    },
+    "who": {
+      "title": "Somos una fábrica de software especializada en el ecosistema de pagos.",
+      "desc": "Nacimos para conectar estrategia y ejecución. Combinamos experiencia en arquitectura, cumplimiento y UX para entregar plataformas confiables y listas para crecer. Integramos canales, orquestamos proveedores y automatizamos operaciones para reducir fricción y acelerar el time-to-market.",
+      "bullets": [
+        "Diseño → Implementación → Operación.",
+        "Observabilidad, calidad y seguridad como estándar.",
+        "Roadmaps iterativos con entregas de valor."
+      ],
+      "pillarsTitleSr": "Pilares",
+      "pillars": [
+        { "title": "Innovación aplicada", "desc": "Construimos y mejoramos productos con foco en impacto medible, no solo prototipos." },
+        { "title": "Seguridad primero", "desc": "Diseño bajo cumplimiento y buenas prácticas: cifrado, segregación y auditoría." },
+        { "title": "Escalabilidad real", "desc": "Arquitecturas orientadas a alto volumen, resiliencia y observabilidad end-to-end." },
+        { "title": "Time-to-market", "desc": "Orquestación de proveedores y automatización para lanzar e iterar más rápido." }
+      ]
+    },
+    "values": {
+      "kicker": "Valor agregado",
+      "title": "Más que pagos: <span class='text-[#B41A1D]'>una experiencia completa</span>",
+      "items": [
+        { "title": "Transparencia", "desc": "Comunicación clara, decisiones trazables y foco en la confianza." },
+        { "title": "Excelencia", "desc": "Criterio técnico alto y mejora continua en cada entrega." },
+        { "title": "Colaboración", "desc": "Equipos multidisciplinares, co-creación con clientes y partners." },
+        { "title": "Propiedad", "desc": "Responsabilidad desde el diseño hasta la operación en vivo." },
+        { "title": "Aprendizaje", "desc": "Feedback constante, postmortems y documentación útil." },
+        { "title": "Simpleza", "desc": "Soluciones directas que reducen complejidad y deuda técnica." }
+      ]
+    },
+    "team": {
+      "kicker": "Equipo",
+      "title": "Gerencia <span class='text-[#B41A1D]'>Red Pontis</span>",
+      "cards": [
+        { "name": "Giancarlo Gallardo", "role": "VP of Technology", "imgAlt": "Gerente 1" },
+        { "name": "Jose Ordóñez", "role": "VP Product Innovation", "imgAlt": "Gerente 2" },
+        { "name": "Nombre del gerente", "role": "Puesto / Área", "imgAlt": "Gerente 3" }
+      ],
+      "linkedinLabel": "LinkedIn"
+    },
+    "cta": {
+      "title": "Construyamos algo que importe",
+      "desc": "Hablemos de tus objetivos y cómo acelerar el camino de la idea al lanzamiento.",
+      "button": "Contáctanos"
+    }
+  },
+   "factoryPage": {
+    "hero": {
+      "title": "Desde el diseño hasta la implementación,",
+      "subtitle": "desarrollamos software flexible y seguro",
+      "desc": "Orquestamos canales y proveedores para acelerar el time-to-market con seguridad y escalabilidad."
+    },
+    "sections": {
+      "present": "Tarjeta presente",
+      "notPresent": "Tarjeta no presente",
+      "valueAdded": "Valor agregado"
+    },
+    "cards": {
+      "present": [
+        {
+          "title": "POS / mPOS",
+          "desc": "Terminales físicas y móviles con chip, banda y contactless. Integración a backoffice y reportería."
+        },
+        {
+          "title": "Tap to Phone (marca blanca)",
+          "desc": "Aceptación contactless en smartphones. Onboarding ágil, KYC y administración centralizada."
+        },
+        {
+          "title": "Eloop en tienda",
+          "desc": "Digitalización de depósitos, retiros, conciliaciones y auditoría con trazabilidad."
+        },
+        {
+          "title": "Tokenización presencial",
+          "desc": "Vault seguro para reutilización de tarjetas y experiencias omnicanal."
+        }
+      ],
+      "notPresent": [
+        {
+          "title": "Payment Gateway",
+          "desc": "Pasarela para ecommerce con antifraude, 3DS, split, multi-adquirente y fallback."
+        },
+        {
+          "title": "Cobros recurrentes",
+          "desc": "Motor de suscripciones con prorrateo, retiros programados y alertas de falla."
+        },
+        {
+          "title": "RT-Payments (Visa Direct / MC Send)",
+          "desc": "Envío y recepción de fondos 24/7 para devoluciones, dispersión y remesas."
+        },
+        {
+          "title": "Billetera móvil + QR",
+          "desc": "QR estático/dinámico, NFC, loyalty y pagos de servicios con UX ágil."
+        }
+      ],
+      "valueAdded": [
+        {
+          "title": "Analytics",
+          "desc": "Paneles de conversión, rutas de fallo y cohortes por canal, producto y comercio."
+        },
+        {
+          "title": "Fraude & Riesgo",
+          "desc": "Reglas dinámicas, listas y conexión con proveedores externos."
+        },
+        {
+          "title": "Backoffice",
+          "desc": "Gestión de comercios, liquidaciones, ajustes y reclamos."
+        },
+        {
+          "title": "Compliance",
+          "desc": "PCI DSS / PCI PIN, ISO 9001 / 37001 y mejores prácticas de seguridad."
+        }
+      ]
+    }
+  }
+}

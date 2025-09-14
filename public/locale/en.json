@@ -1,0 +1,279 @@
+{
+  "brand": { "name": "Red Pontis" },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "factory": "Factory",
+    "contact": "Contact"
+  },
+  "ui": { "openMenu": "Open menu", "language": "Language" },
+  "hero": {
+    "badge": "Software factory for payment solutions",
+    "headline": "We lead the evolution of the <span class='text-[#B41A1D]'>payment ecosystem</span>.",
+    "lead": "Innovative, agile, and flexible solutions to optimize operations, improve customer experience, and integrate advanced technology with a strategic focus in every transaction.",
+    "hashtag": {
+      "chunk1": "#WeCreate",
+      "chunk2": "ToInnovate",
+      "subtitle": "Innovation with purpose: from idea to deployment."
+    },
+    "cta": {
+      "solutions": "See solutions",
+      "contact": "Contact us"
+    },
+    "card": {
+      "title": "More than payments, real value",
+      "desc": "We design, build, and deploy secure and scalable platforms for acquirers, fintechs, and merchants.",
+      "list": [
+        "PCI DSS / PCI PIN Certifications",
+        "ISO 9001 / ISO 37001",
+        "White-label and custom solutions"
+      ],
+      "cta": "Get to know us"
+    }
+  },
+  "valueAdd": {
+    "kicker": "Value added",
+    "title": "More than payments: <span class='text-[#B41A1D]'>a complete experience</span>",
+    "subtitle": "Services and tools that empower every transaction, improving efficiency and user experience.",
+    "items": [
+      "Specialized in payment solutions",
+      "PaaS enabler for acquirers and Payment Facilitators (PFs)",
+      "Comprehensive white-label solutions",
+      "Custom development",
+      "PCI DSS / PCI PIN certifications",
+      "ISO 9001 / ISO 37001"
+    ]
+  },
+  "factory": {
+    "kicker": "Software Factory",
+    "title": "Innovation without limits",
+    "subtitle": "We combine experience and technology to design software that drives the evolution of the payment ecosystem, ensuring efficient and secure solutions.",
+    "blocks": [
+      {
+        "title": "Card Present",
+        "desc": "Transactions with a physical card at POS/terminal via chip, magstripe, or contactless."
+      },
+      {
+        "title": "Card Not Present",
+        "desc": "Payments without a physical card: online purchases, phone payments, or recurring transactions."
+      },
+      {
+        "title": "Value Added",
+        "desc": "Analytics, loyalty, financing, and security to optimize business management."
+      }
+    ]
+  },
+  "presence": {
+    "kicker": "Our presence",
+    "title": "Presence in <span class='text-[#B41A1D]'>LATAM</span>",
+    "subtitle": "We operate in multiple countries across the region, driving the payment ecosystem with agile and secure solutions.",
+    "mapAlt": "Map of Red Pontis presence in LATAM"
+  },
+  "footer": {
+    "hashtag": { "chunk1": "#WeCreate", "chunk2": "ToInnovate" },
+    "cta": "Let's talk",
+    "brandAlt": "Red Pontis",
+    "brandSrOnly": "Red Pontis",
+    "brandDesc": "Software factory specialized in the payments ecosystem. We build secure, scalable platforms for acquirers, fintechs, and merchants across LATAM.",
+    "social": { "linkedin": "LinkedIn" },
+    "navTitle": "Navigation",
+    "nav": ["Home", "About", "Factory", "Contact"],
+    "solutionsTitle": "Solutions",
+    "solutions": [
+      "eCore Switch",
+      "Payment Gateway",
+      "Tap to Phone",
+      "Recurring Payments",
+      "Mobile Wallet",
+      "Tokenization",
+      "Real Time Payments",
+      "QR Generator"
+    ],
+    "legal": {
+      "rights": "All rights reserved.",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  },
+  "contact": {
+    "kicker": "Let's talk",
+    "title": "Ready to build?",
+    "desc": "Tell us about your challenge and we’ll get back to you soon. We deliver <b>tailor-made</b> projects for the payments ecosystem.",
+    "bullets": [
+      "<b>Fast response</b> and clear briefing.",
+      "<b>Secure</b> approach and compliance.",
+      "<b>Scalable</b> implementation and support."
+    ],
+    "badges": ["PCI DSS / PCI PIN", "ISO 9001", "ISO 37001"],
+    "form": {
+      "name": { "label": "Name", "placeholder": "Your name" },
+      "email": { "label": "Email", "placeholder": "you@example.com" },
+      "company": {
+        "label": "Company (optional)",
+        "placeholder": "Your company"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Tell us briefly about your project or need…"
+      },
+      "privacyHtml": "I accept the <a href=\"/privacidad\" class=\"underline decoration-[#B41A1D]/60 underline-offset-2 hover:text-[#B41A1D]\">privacy policy</a>.",
+      "submit": "Send"
+    }
+  },
+  "about": {
+    "hero": {
+      "kicker": "About us",
+      "title": "More than software: <span class='text-[#B41A1D]'>a complete experience</span>",
+      "subtitle": "We design, integrate, and operate solutions to accelerate innovation with security and scale."
+    },
+    "who": {
+      "title": "We are a software factory specialized in the payments ecosystem.",
+      "desc": "We were born to connect strategy and execution. We combine experience in architecture, compliance, and UX to deliver reliable, growth-ready platforms. We integrate channels, orchestrate vendors, and automate operations to reduce friction and accelerate time-to-market.",
+      "bullets": [
+        "Design → Implementation → Operation.",
+        "Observability, quality, and security by default.",
+        "Iterative roadmaps with value deliveries."
+      ],
+      "pillarsTitleSr": "Pillars",
+      "pillars": [
+        {
+          "title": "Applied innovation",
+          "desc": "We build and improve products with measurable impact, not just prototypes."
+        },
+        {
+          "title": "Security first",
+          "desc": "Compliance-driven design and best practices: encryption, segregation, and auditing."
+        },
+        {
+          "title": "Real scalability",
+          "desc": "Architectures for high volume, resilience, and end-to-end observability."
+        },
+        {
+          "title": "Time-to-market",
+          "desc": "Vendor orchestration and automation to launch and iterate faster."
+        }
+      ]
+    },
+    "values": {
+      "kicker": "Value added",
+      "title": "More than payments: <span class='text-[#B41A1D]'>a complete experience</span>",
+      "items": [
+        {
+          "title": "Transparency",
+          "desc": "Clear communication, traceable decisions, and trust focus."
+        },
+        {
+          "title": "Excellence",
+          "desc": "High technical bar and continuous improvement in every delivery."
+        },
+        {
+          "title": "Collaboration",
+          "desc": "Multidisciplinary teams, co-creation with clients and partners."
+        },
+        {
+          "title": "Ownership",
+          "desc": "Accountability from design through live operations."
+        },
+        {
+          "title": "Learning",
+          "desc": "Constant feedback, postmortems, and useful documentation."
+        },
+        {
+          "title": "Simplicity",
+          "desc": "Straightforward solutions that reduce complexity and tech debt."
+        }
+      ]
+    },
+    "team": {
+      "kicker": "Team",
+      "title": "Management <span class='text-[#B41A1D]'>Red Pontis</span>",
+      "cards": [
+        {
+          "name": "Giancarlo Gallardo",
+          "role": "VP of Technology",
+          "imgAlt": "Manager 1"
+        },
+        {
+          "name": "Jose Ordóñez",
+          "role": "VP Product Innovation",
+          "imgAlt": "Manager 2"
+        },
+        { "name": "Manager name", "role": "Role / Area", "imgAlt": "Manager 3" }
+      ],
+      "linkedinLabel": "LinkedIn"
+    },
+    "cta": {
+      "title": "Let’s build something that matters",
+      "desc": "Let’s talk about your goals and how to accelerate the path from idea to launch.",
+      "button": "Contact us"
+    }
+  },
+  "factoryPage": {
+    "hero": {
+      "title": "From design to implementation,",
+      "subtitle": "we develop flexible and secure software",
+      "desc": "We orchestrate channels and providers to accelerate time-to-market with security and scalability."
+    },
+    "sections": {
+      "present": "Card Present",
+      "notPresent": "Card Not Present",
+      "valueAdded": "Value Added"
+    },
+    "cards": {
+      "present": [
+        {
+          "title": "POS / mPOS",
+          "desc": "Physical and mobile terminals with chip, magstripe, and contactless. Integrated with backoffice and reporting."
+        },
+        {
+          "title": "Tap to Phone (white label)",
+          "desc": "Contactless acceptance on smartphones. Agile onboarding, KYC, and centralized management."
+        },
+        {
+          "title": "In-store Eloop",
+          "desc": "Digitalization of deposits, withdrawals, reconciliations, and audits with traceability."
+        },
+        {
+          "title": "In-person Tokenization",
+          "desc": "Secure vault for card reuse and omnichannel experiences."
+        }
+      ],
+      "notPresent": [
+        {
+          "title": "Payment Gateway",
+          "desc": "E-commerce gateway with antifraud, 3DS, split, multi-acquirer, and fallback."
+        },
+        {
+          "title": "Recurring Payments",
+          "desc": "Subscription engine with proration, scheduled debits, and failure alerts."
+        },
+        {
+          "title": "RT-Payments (Visa Direct / MC Send)",
+          "desc": "Send and receive funds 24/7 for refunds, disbursements, and remittances."
+        },
+        {
+          "title": "Mobile Wallet + QR",
+          "desc": "Static/dynamic QR, NFC, loyalty, and service payments with smooth UX."
+        }
+      ],
+      "valueAdded": [
+        {
+          "title": "Analytics",
+          "desc": "Conversion dashboards, failure routes, and cohorts by channel, product, and merchant."
+        },
+        {
+          "title": "Fraud & Risk",
+          "desc": "Dynamic rules, lists, and integration with external providers."
+        },
+        {
+          "title": "Backoffice",
+          "desc": "Merchant management, settlements, adjustments, and claims."
+        },
+        {
+          "title": "Compliance",
+          "desc": "PCI DSS / PCI PIN, ISO 9001 / 37001, and security best practices."
+        }
+      ]
+    }
+  }
+}

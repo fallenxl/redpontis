@@ -8,7 +8,7 @@ const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/nosotros", label: "Nosotros" },
   { href: "/fabrica", label: "Fábrica" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/contacto", label: "Contacto" }
 ];
 
 const solutions = [
@@ -19,12 +19,12 @@ const solutions = [
   { href: "/fabrica#wallet", label: "Billetera Móvil" },
   { href: "/fabrica#token", label: "Tokenización" },
   { href: "/fabrica#rtp", label: "Real Time Payments" },
-  { href: "/fabrica#qr", label: "Generador de QR" },
+  { href: "/fabrica#qr", label: "Generador de QR" }
 ];
 
 const legal = [
   { href: "/privacidad", label: "Privacidad" },
-  { href: "/terminos", label: "Términos" },
+  { href: "/terminos", label: "Términos" }
 ];
 ---
 
@@ -40,11 +40,13 @@ const legal = [
     <!-- CTA superior -->
     <div class="ft-col flex flex-col gap-4 md:flex-row md:items-center md:justify-between py-10">
       <p class="text-xl text-center md:text-left md:text-2xl heavitas tracking-tight text-[#121212]">
-        <span class="text-[#575756]">#WeCreate</span><span id="ft-hash-accent" class="text-[#B41A1D]">ToInnovate</span>
+        <span class="text-[#575756]" data-i18n="footer.hashtag.chunk1">#WeCreate</span>
+        <span id="ft-hash-accent" class="text-[#B41A1D]" data-i18n="footer.hashtag.chunk2">ToInnovate</span>
       </p>
       <a
         href="/contacto"
         class="inline-flex items-center justify-center rounded-xl bg-[#B41A1D] px-5 py-3 font-semibold text-white shadow-[0_12px_28px_rgba(180,26,29,0.35)] active:translate-y-px transition"
+        data-i18n="footer.cta"
       >
         Hablemos
         <i class="fa-solid fa-arrow-right ml-2"></i>
@@ -58,30 +60,42 @@ const legal = [
       <!-- Col 1: Marca -->
       <div class="ft-col md:col-span-5">
         <a href="/" class="inline-flex items-center gap-3">
-          <Image src={logo} alt="Red Pontis" class="h-16 w-auto" />
-          <span class="sr-only">Red Pontis</span>
+          <Image
+            src={logo}
+            alt="Red Pontis"
+            class="h-16 w-auto"
+            data-i18n-attr="alt"
+            data-i18n-alt="footer.brandAlt"
+          />
+          <span class="sr-only" data-i18n="footer.brandSrOnly">Red Pontis</span>
         </a>
-        <p class="mt-4 max-w-md text-sm text-[#575756]">
-          Fábrica de software especializada en el ecosistema de pagos. Construimos plataformas seguras y escalables
-          para adquirentes, fintechs y comercios en LATAM.
+        <p class="mt-4 max-w-md text-sm text-[#575756]" data-i18n="footer.brandDesc">
+          Fábrica de software especializada en el ecosistema de pagos...
         </p>
 
         <!-- Sociales -->
         <div class="mt-5 flex items-center gap-4 text-[#575756]">
-          <a aria-label="LinkedIn" href="https://www.linkedin.com" class="hover:text-[#B41A1D] transition">
-            <i class="fa-brands fa-linkedin text-xl"></i>
+          <a
+            aria-label="LinkedIn"
+            href="https://www.linkedin.com"
+            class="hover:text-[#B41A1D] transition"
+            data-i18n-attr="aria-label"
+            data-i18n-aria-label="footer.social.linkedin"
+          >
+            <i class="fa-brands fa-linkedin text-xl" aria-hidden="true"></i>
           </a>
-
         </div>
       </div>
 
       <!-- Col 2: Navegación -->
       <nav class="ft-col md:col-span-3">
-        <h3 class="text-sm font-semibold text-[#121212]">Navegación</h3>
+        <h3 class="text-sm font-semibold text-[#121212]" data-i18n="footer.navTitle">Navegación</h3>
         <ul class="mt-4 space-y-2">
-          {navLinks.map((l) => (
+          {navLinks.map((l, i) => (
             <li>
-              <a href={l.href} class="text-sm text-[#575756] hover:text-[#B41A1D] transition">{l.label}</a>
+              <a href={l.href} class="text-sm text-[#575756] hover:text-[#B41A1D] transition">
+                <span data-i18n={`footer.nav.${i}`}>{l.label}</span>
+              </a>
             </li>
           ))}
         </ul>
@@ -89,11 +103,13 @@ const legal = [
 
       <!-- Col 3: Soluciones -->
       <nav class="ft-col md:col-span-4">
-        <h3 class="text-sm font-semibold text-[#121212]">Soluciones</h3>
+        <h3 class="text-sm font-semibold text-[#121212]" data-i18n="footer.solutionsTitle">Soluciones</h3>
         <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {solutions.map((s) => (
+          {solutions.map((s, i) => (
             <li>
-              <a href={s.href} class="text-sm text-[#575756] hover:text-[#B41A1D] transition">{s.label}</a>
+              <a href={s.href} class="text-sm text-[#575756] hover:text-[#B41A1D] transition">
+                <span data-i18n={`footer.solutions.${i}`}>{s.label}</span>
+              </a>
             </li>
           ))}
         </ul>
@@ -104,11 +120,15 @@ const legal = [
 
     <!-- Franja legal -->
     <div class="ft-col flex flex-col md:flex-row items-center md:justify-between gap-4 py-6">
-      <p class="text-sm text-[#575756]/80">© {year} Red Pontis. Todos los derechos reservados.</p>
+      <p class="text-sm text-[#575756]/80">
+        © {year} Red Pontis. <span data-i18n="footer.legal.rights">Todos los derechos reservados.</span>
+      </p>
       <ul class="flex flex-wrap items-center gap-5">
-        {legal.map((l) => (
+        {legal.map((l, i) => (
           <li>
-            <a href={l.href} class="text-sm text-[#575756]/80 hover:text-[#B41A1D] transition">{l.label}</a>
+            <a href={l.href} class="text-sm text-[#575756]/80 hover:text-[#B41A1D] transition">
+              <span data-i18n={`footer.legal.${i === 0 ? "privacy" : "terms"}`}>{l.label}</span>
+            </a>
           </li>
         ))}
       </ul>
@@ -130,7 +150,6 @@ const legal = [
       duration: 0.5,
       delay: i * 0.05,
       ease: "power3.out",
-      // scrollTrigger: { trigger: el, start: "top 90%", once: true },
     });
   });
 
@@ -142,5 +161,10 @@ const legal = [
     repeat: -1,
     yoyo: true,
     ease: "sine.inOut",
+  });
+
+  // Re-aplicar traducciones al cambiar idioma (solo este bloque)
+  window.addEventListener("rp:langchange", () => {
+    (window as any).rpI18n?.apply?.(document.getElementById("siteFooter")!);
   });
 </script>

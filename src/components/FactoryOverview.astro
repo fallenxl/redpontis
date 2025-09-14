@@ -1,24 +1,9 @@
 ---
 type Block = { title: string; desc: string; icon: string };
 const blocks: Block[] = [
-  {
-    title: "Tarjeta Presente",
-    desc:
-      "Transacciones con tarjeta física en POS/terminal mediante chip, banda o contactless.",
-    icon: "fa-solid fa-credit-card",
-  },
-  {
-    title: "Tarjeta No Presente",
-    desc:
-      "Pagos sin tarjeta física: compras online, pagos telefónicos o transacciones recurrentes.",
-    icon: "fa-solid fa-globe",
-  },
-  {
-    title: "Valor Agregado",
-    desc:
-      "Analítica, fidelización, financiamiento y seguridad para optimizar la gestión del negocio.",
-    icon: "fa-solid fa-chart-line",
-  },
+  { title: "Tarjeta Presente",     desc: "Transacciones con tarjeta física en POS/terminal mediante chip, banda o contactless.", icon: "fa-solid fa-credit-card" },
+  { title: "Tarjeta No Presente",  desc: "Pagos sin tarjeta física: compras online, pagos telefónicos o transacciones recurrentes.", icon: "fa-solid fa-globe" },
+  { title: "Valor Agregado",       desc: "Analítica, fidelización, financiamiento y seguridad para optimizar la gestión del negocio.", icon: "fa-solid fa-chart-line" }
 ];
 ---
 
@@ -31,31 +16,30 @@ const blocks: Block[] = [
 
   <div class="relative mx-auto max-w-7xl px-4 md:px-6 py-16 md:py-24">
     <header class="max-w-3xl text-white">
-      <p class="text-xs md:text-sm uppercase tracking-widest flex items-center gap-2 text-white/80">
-        <span class="inline-block h-[3px] w-8 rounded bg-white"></span> Fábrica de software
+      <p class="text-xs md:text-sm uppercase tracking-widest flex items-center gap-2 text-white/80"  >
+        <span class="inline-block h-[3px] w-8 rounded bg-white"></span>
+        <span data-i18n="factory.kicker">Fábrica de software</span>
       </p>
-      <h2 class="heavitas mt-2 text-3xl md:text-5xl leading-tight">
+      <h2 class="heavitas mt-2 text-3xl md:text-5xl leading-tight" data-i18n="factory.title">
         Innovación sin límites
       </h2>
-      <p class="mt-3 text-white/90 md:text-lg">
+      <p class="mt-3 text-white/90 md:text-lg" data-i18n="factory.subtitle">
         Combinamos experiencia y tecnología para diseñar software que impulsa la
         evolución del ecosistema de pagos, garantizando soluciones eficientes y seguras.
       </p>
     </header>
 
     <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-      {blocks.map((b) => (
-        <article
-          class="fo-card group relative rounded-2xl bg-white p-8 shadow-md transition hover:-translate-y-1 hover:shadow-xl"
-        >
+      {blocks.map((b, i) => (
+        <article class="fo-card group relative rounded-2xl bg-white p-8 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
           <div class="absolute top-0 left-0 h-1 w-full bg-[#B41A1D] rounded-t-2xl opacity-0 transition group-hover:opacity-100"></div>
 
           <div class="flex items-center justify-center h-14 w-14 rounded-xl bg-[#B41A1D]/10 text-[#B41A1D] mb-5 group-hover:bg-[#B41A1D] group-hover:text-white transition">
-            <i class={b.icon + " text-2xl"}></i>
+            <i class={b.icon + " text-2xl"} aria-hidden="true"></i>
           </div>
 
-          <h3 class="text-xl heavitas text-[#B41A1D]">{b.title}</h3>
-          <p class="mt-3 text-[#575756]">{b.desc}</p>
+          <h3 class="text-xl heavitas text-[#B41A1D]" data-i18n={`factory.blocks.${i}.title`}>{b.title}</h3>
+          <p class="mt-3 text-[#575756]" data-i18n={`factory.blocks.${i}.desc`}>{b.desc}</p>
         </article>
       ))}
     </div>
@@ -76,7 +60,12 @@ const blocks: Block[] = [
       duration: 0.55,
       delay: i * 0.08,
       ease: "power3.out",
-      scrollTrigger: { trigger: el, start: "top 85%" },
+      scrollTrigger: { trigger: el, start: "top 85%" }
     });
+  });
+
+  // Re-aplicar traducciones si cambia el idioma
+  window.addEventListener("rp:langchange", () => {
+    (window as any).rpI18n?.apply?.(document.getElementById("factory")!);
   });
 </script>

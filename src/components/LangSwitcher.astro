@@ -1,67 +1,143 @@
 ---
 interface Props {
-  lang: "es" | "en";
-  pathname: string; // e.g. /es/nosotros
+  defaultLang?: "es" | "en";
 }
-
-const { lang, pathname } = Astro.props;
-
-// Tabla de mapeo ES <-> EN (agrega más según necesites)
-const slugMap = {
-  es: {
-    "/es": "/en",
-    "/es/": "/en/",
-    "/es/nosotros": "/en/about",
-    "/es/fabrica": "/en/factory",
-    "/es/contacto": "/en/contact",
-  },
-  en: {
-    "/en": "/es",
-    "/en/": "/es/",
-    "/en/about": "/es/nosotros",
-    "/en/factory": "/es/fabrica",
-    "/en/contact": "/es/contacto",
-  },
-} as const;
-
-type Lang = keyof typeof slugMap;
-type SlugMap = Record<string, string>;
-
-function resolveTarget(toLang: Lang, currentPath: string) {
-  // normaliza sin trailing slash doble
-  const key = currentPath.replace(/\/+$/, (m) => (m === "/" ? "/" : ""));
-  // type-safe lookup
-  const map: SlugMap = slugMap[lang as Lang];
-  const direct = map[key];
-  if (direct) return direct;
-
-  // fallback a home del otro idioma
-  return toLang === "es" ? "/es" : "/en";
-}
-
-const other = lang === "es" ? "en" : "es";
-const targetHref = resolveTarget(other, pathname);
+const { defaultLang = "es" } = Astro.props;
 ---
 
-<nav aria-label="Language switcher" class="flex items-center gap-2">
-  <a
-    href="/es"
-    onclick={`try{localStorage.setItem('rp_lang','es')}catch(e){}`}
-    class={`px-3 py-1.5 rounded-xl border text-sm ${
-      lang === "es"
-        ? "bg-[#B41A1D] text-white border-transparent"
-        : "border-[#575756] text-[#575756] hover:bg-[#B41A1D]/10 hover:text-[#B41A1D]"
-    }`}
-  >ES</a>
+<div id="rp-lang-switcher" class="relative">
+  <!-- Botón -->
+  <button
+    id="rp-lang-btn"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    class="min-w-24 justify-between inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm
+           border-[#575756] text-[#575756] hover:bg-[#B41A1D]/10 hover:text-[#B41A1D] focus:outline-none focus:ring-2 focus:ring-[#B41A1D]/40"
+  >
 
-  <!-- <a
-    href="/en"
-    onclick={`try{localStorage.setItem('rp_lang','en')}catch(e){}`}
-    class={`px-3 py-1.5 rounded-xl border text-sm ${
-      lang === "en"
-        ? "bg-[#B41A1D] text-white border-transparent"
-        : "border-[#575756] text-[#575756] hover:bg-[#B41A1D]/10 hover:text-[#B41A1D]"
-    }`}
-  >EN</a> -->
+    <i class="fa fa-globe-americas text-[#B41A1D]" aria-hidden="true"></i>
+    <span id="rp-lang-label" class="text-[#B41A1D] text-center mx-auto">
+      ES</span>
+    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+    </svg>
+  </button>
 
-</nav>
+  <!-- Menú -->
+  <ul
+    id="rp-lang-menu"
+    role="listbox"
+    tabindex="-1"
+    class="absolute z-50 mt-2 w-40 rounded-xl border border-black/10 bg-white p-1 shadow-lg
+           transition-all duration-150 origin-top right-0
+           invisible opacity-0 translate-y-1"
+  >
+    <li>
+      <button
+        type="button"
+        role="option"
+        aria-selected="false"
+        data-lang="es"
+        class="w-full text-left rounded-lg px-3 py-2 text-sm
+               text-[#575756] hover:bg-[#B41A1D]/10 hover:text-[#B41A1D] focus:outline-none"
+      >
+        Español (ES)
+      </button>
+    </li>
+    <li>
+      <button
+        type="button"
+        role="option"
+        aria-selected="false"
+        data-lang="en"
+        class="w-full text-left rounded-lg px-3 py-2 text-sm
+               text-[#575756] hover:bg-[#B41A1D]/10 hover:text-[#B41A1D] focus:outline-none"
+      >
+        English (EN)
+      </button>
+    </li>
+  </ul>
+</div>
+
+<script>
+  // TS válido en Astro
+  (function () {
+    const KEY = "rp_lang";
+    type Lang = "es" | "en";
+
+    const root = document.documentElement;
+    const switcher = document.getElementById("rp-lang-switcher") as HTMLDivElement | null;
+    const btn = document.getElementById("rp-lang-btn") as HTMLButtonElement | null;
+    const label = document.getElementById("rp-lang-label") as HTMLSpanElement | null;
+    const menu = document.getElementById("rp-lang-menu") as HTMLUListElement | null;
+
+    function getSaved(): Lang {
+      try {
+        const v = localStorage.getItem(KEY);
+        if (v === "es" || v === "en") return v;
+      } catch {}
+      // fallback al prop de servidor o "es"
+      return (Astro.props.defaultLang as Lang) || "es";
+    }
+
+    function setLang(lang: Lang) {
+      try { localStorage.setItem(KEY, lang); } catch {}
+      root.setAttribute("lang", lang);
+      root.classList.toggle("lang-en", lang === "en");
+      root.classList.toggle("lang-es", lang === "es");
+
+      if (label) label.textContent = lang.toUpperCase();
+
+      // marcar activo en el menú
+      menu?.querySelectorAll<HTMLButtonElement>("[data-lang]").forEach((el) => {
+        const isActive = el.dataset.lang === lang;
+        el.setAttribute("aria-selected", String(isActive));
+        el.classList.toggle("bg-[#B41A1D]", isActive);
+        el.classList.toggle("text-white", isActive);
+        el.classList.toggle("text-[#575756]", !isActive);
+      });
+
+      // notificar a la app por si necesitas traducir textos en vivo
+      window.dispatchEvent(new CustomEvent("rp:langchange", { detail: { lang } }));
+  
+    }
+
+    function toggleMenu(force?: boolean) {
+      if (!menu || !btn) return;
+      const open = force ?? menu.dataset.open !== "true";
+      menu.dataset.open = String(open);
+      btn.setAttribute("aria-expanded", String(open));
+      menu.classList.toggle("invisible", !open);
+      menu.classList.toggle("opacity-0", !open);
+      menu.classList.toggle("translate-y-1", !open);
+    }
+
+    // Inicializar estado
+    const initial = getSaved();
+    setLang(initial);
+
+    // Abrir/cerrar
+    btn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggleMenu();
+    });
+
+    // Selección de opción
+    menu?.addEventListener("click", (e) => {
+      const target = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-lang]");
+      if (!target) return;
+      const lang = (target.dataset.lang as Lang) || "es";
+      setLang(lang);
+      toggleMenu(false);
+      location.reload();
+    });
+
+    // Cerrar al hacer click afuera / ESC
+    document.addEventListener("click", (e) => {
+      if (!switcher?.contains(e.target as Node)) toggleMenu(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") toggleMenu(false);
+    });
+  })();
+</script>

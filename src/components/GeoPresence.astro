@@ -1,70 +1,45 @@
 ---
-const countries = [
-  "Honduras","Colombia","Uruguay","Panamá","Argentina","Brasil","Ecuador","Paraguay","Perú",
-];
-const total = countries.length;
+import { Image } from "astro:assets";
+import mapLatam from "../assets/map.svg";
 ---
 
-<section id="geo" class="relative overflow-hidden bg-white">
-  <!-- Decor de fondo (sutil, usando colores de marca) -->
+<section id="presence" class="relative overflow-hidden bg-white">
+  <!-- Decor sutil de marca -->
   <div class="pointer-events-none absolute inset-0">
-    <div class="absolute -top-32 -right-24 h-72 w-72 rounded-full bg-[#B41A1D]/10 blur-3xl"></div>
-    <div class="absolute -bottom-40 -left-24 h-96 w-96 rounded-full bg-[#575756]/10 blur-3xl"></div>
-    <!-- patrón de puntos -->
-    <div class="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(currentColor_1px,transparent_1.5px)] [background-size:18px_18px] text-[#575756]"></div>
+    <div class="absolute -top-28 left-1/2 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full bg-[#B41A1D]/10 blur-3xl"></div>
+    <div class="absolute bottom-[-18%] right-[-12%] h-[34rem] w-[34rem] rounded-full bg-[#575756]/10 blur-3xl"></div>
   </div>
 
-  <div class="relative mx-auto max-w-7xl px-4 md:px-6 py-16 md:py-24">
-    <header class="max-w-3xl">
-      <p class="text-xs tracking-widest uppercase text-[#575756] flex items-center gap-2">
-        <span class="inline-block h-[3px] w-8 rounded bg-[#B41A1D]"></span> Presencia regional
+  <div class="relative mx-auto max-w-7xl px-4 md:px-6 pt-16 md:pt-24 flex flex-col items-center md:flex-row">
+    <header class="text-center md:text-left max-w-3xl">
+      <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-[#575756] flex items-center gap-2 justify-center md:justify-start" >
+        <span class="inline-block h-[3px] w-8 rounded bg-[#B41A1D]"></span>
+        <span data-i18n="presence.kicker">Nuestra presencia</span>
       </p>
-      <h2 class="heavitas text-3xl md:text-5xl leading-tight mt-2 text-[#B41A1D]">
-        ¿Dónde estamos?
+      <h2 class="heavitas mt-2 text-3xl md:text-5xl leading-tight text-[#121212]" data-i18n="presence.title" data-i18n-html>
+        Presencia en <span class="text-[#B41A1D]">LATAM</span>
       </h2>
-      <p class="mt-3 text-[#575756] md:text-lg">
-        Proyectos y operaciones en Latinoamérica. Ya somos
-        <span id="geo-count" data-count={total} class="font-semibold text-[#B41A1D]">{total}</span>
-        países (y creciendo).
+      <p class="mt-3 text-[#575756] md:text-lg text-balance" data-i18n="presence.subtitle">
+        Operamos en múltiples países de la región, impulsando el ecosistema de pagos con soluciones ágiles y seguras.
       </p>
     </header>
-<!-- Chips: scroll-snap en mobile, grid en desktop -->
-<div class="mt-8">
-  <ul
-    class="flex flex-nowrap snap-x snap-mandatory gap-2 overflow-x-auto pb-2 pr-6 scroll-px-4
-           md:grid md:grid-cols-3 lg:grid-cols-4 md:overflow-visible md:gap-3"
-    role="list"
-    aria-label="Listado de países con presencia"
-  >
-    {countries.map((c) => (
-      <li class="snap-center flex-none md:snap-none">
-        <button
-          class="geo-chip group inline-flex shrink-0 items-center gap-2 rounded-full
-                 border border-[#575756]/20 bg-white/90 px-4 py-2 text-sm text-[#575756]
-                 shadow-sm ring-1 ring-black/5 backdrop-blur transition
-                 hover:translate-y-[-1px] hover:shadow-md
-                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B41A1D]/60"
-          data-country={c}
-          aria-label={`País: ${c}`}
-        >
-          <span class="dot inline-block h-2 w-2 rounded-full bg-[#B41A1D] transition group-hover:scale-110"></span>
-          <span class="font-medium">{c}</span>
-          <span class="ml-1 hidden text-[10px] uppercase tracking-widest text-[#B41A1D]/80 sm:inline">LATAM</span>
-        </button>
-      </li>
-    ))}
-  </ul>
-</div>
 
-
-    <!-- mini leyenda -->
-    <div class="mt-6 flex items-center gap-3 text-xs text-[#575756]">
-      <span class="inline-block h-2 w-2 rounded-full bg-[#B41A1D]"></span>
-      <span>Proyección escalable: más países serán añadidos este año.</span>
+    <!-- Mapa -->
+    <div class="relative mx-auto max-w-5xl">
+      <div class="mx-auto w-full">
+        <Image
+          src={mapLatam}
+          alt="Mapa de presencia de Red Pontis en LATAM"
+          class="mx-auto h-auto w-full max-w-[880px] rounded-full object-contain border-none"
+          widths={[640, 768, 1024, 1280]}
+          sizes="(max-width: 1024px) 90vw, 880px"
+          loading="lazy"
+          data-i18n-attr="alt"
+          data-i18n-alt="presence.mapAlt"
+        />
+      </div>
     </div>
   </div>
-
-
 </section>
 
 <script>
@@ -72,66 +47,19 @@ const total = countries.length;
   import ScrollTrigger from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
-  // Tipado TS
-  const chips = document.querySelectorAll<HTMLButtonElement>(".geo-chip");
-  const dots  = document.querySelectorAll<HTMLSpanElement>(".geo-chip .dot");
-  const countEl = document.getElementById("geo-count") as HTMLSpanElement | null;
-
-  // Animación de entrada (stagger)
-  chips.forEach((el, i) => {
-    gsap.from(el, {
+  const section = document.querySelector<HTMLElement>("#presence");
+  if (section) {
+    gsap.from(section, {
       opacity: 0,
-      y: 16,
-      duration: 0.5,
-      delay: i * 0.05,
+      y: 26,
+      duration: 0.7,
       ease: "power3.out",
-      scrollTrigger: { trigger: "#geo", start: "top 85%", once: true },
+      scrollTrigger: { trigger: section, start: "top 85%", once: true }
     });
-  });
-  // Counter animado
-if (countEl) {
-  const target = Number(countEl.dataset.count || "0");
+  }
 
-  const counter = { val: 0 }; // objeto a animar
-  gsap.fromTo(
-    counter,                         // target
-    { val: 0 },                      // estado inicial
-    { 
-      val: target, 
-      duration: 0.9, 
-      delay: 0.15, 
-      ease: "power2.out",
-      onUpdate: () => {
-        countEl.textContent = Math.round(counter.val).toString();
-      },
-      scrollTrigger: { 
-        trigger: "#geo", 
-        start: "top 85%", 
-        once: true 
-      }
-    }
-  );
-}
-
-
-  // Micro-interacción: pulso en el punto rojo al hover/focus
-  chips.forEach((chip, i) => {
-    const dot = dots[i];
-    if (!dot) return;
-    const tl = gsap.timeline({ });
-    tl.to(dot, { scale: 1.25, duration: 0.12, ease: "power2.out" })
-      .to(dot, { scale: 1, duration: 0.18, ease: "power2.inOut" });
-
-  });
-
-  // Parallax sutil de los SVG decorativos
-  const decors = document.querySelectorAll<SVGElement>("#geo svg");
-  decors.forEach((el, i) => {
-    gsap.to(el, {
-      y: i % 2 ? 12 : -10,
-      rotate: i % 2 ? -2 : 2,
-      ease: "none",
-      scrollTrigger: { trigger: "#geo", start: "top bottom", end: "bottom top", scrub: 0.5 },
-    });
+  // Reaplicar traducción al cambiar idioma
+  window.addEventListener("rp:langchange", () => {
+    (window as any).rpI18n?.apply?.(document.getElementById("presence")!);
   });
 </script>
