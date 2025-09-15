@@ -1,7 +1,93 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+type CaseItem = { year: string; title: string; desc: string };
+const ITEMS: CaseItem[] = [
+  { year: "2015", title: "eCore Switch para Niubiz", desc: "Implementación de la plataforma de comercio electrónico Visa Pagos, soportando 3M transacciones diarias." },
+  { year: "2017", title: "Payment Gateway 2.0", desc: "Integración a Pago App y Pago Web con antifraude y 3DS para Niubiz." },
+  { year: "2018", title: "Pagos en tiempo real (Visa Direct)", desc: "Más de 3M transacciones diarias con Yape y Plin." },
+  { year: "2019", title: "POS marca blanca para Culqi", desc: "Canal de pago presencial, reduciendo costos y time to market." },
+  { year: "2020", title: "Mejora en conversión", desc: "+10% en cobros recurrentes para Oncosalud." },
+  { year: "2021", title: "BackOffice y Tokenización", desc: "Marketplace Diners Club y plataforma de tokenización para Oncosalud." },
+  { year: "2023", title: "Innovaciones BBVA y Culqi", desc: "Terminales para BBVA, Tap To Phone NFC y +3B soles procesados por Culqi." },
+  { year: "2024", title: "Pulseras NFC UENO Bank", desc: "Sistema cerrado de pagos en Paraguay." }
+];
 ---
 
 <Layout>
-    
+  <!-- HERO -->
+  <section id="cases-hero" class="relative overflow-hidden bg-white pb-20">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute -top-24 left-1/2 h-[44rem] w-[44rem] -translate-x-1/2 rounded-full bg-[#B41A1D]/10 blur-3xl"></div>
+      <div class="absolute bottom-[-20%] right-[-10%] h-[36rem] w-[36rem] rounded-full bg-[#575756]/10 blur-3xl"></div>
+      <div class="absolute inset-0 [background:radial-gradient(transparent_1px,#ffffff_1px)] [background-size:28px_28px] opacity-[0.35]"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-4 md:px-6 pt-28 md:pt-36 pb-10">
+      <header class="text-center mx-auto max-w-3xl">
+        <div class="flex items-center justify-center gap-3 text-[0.8rem] tracking-widest uppercase text-[#575756]">
+          <span class="inline-block h-[3px] w-8 rounded-full bg-[#B41A1D]"></span>
+          <span data-i18n="casesPage.hero.kicker">Casos de éxito</span>
+        </div>
+        <h1 class="heavitas mt-3 text-4xl md:text-5xl leading-tight text-[#121212]" data-i18n="casesPage.hero.title" data-i18n-html>
+          Cada desafío es una oportunidad para <span class="text-[#B41A1D]">innovar</span>
+        </h1>
+        <p class="mt-4 text-[#575756] md:text-lg" data-i18n="casesPage.hero.subtitle">
+          Descubre cómo nuestras soluciones han transformado la operación de nuestros clientes.
+        </p>
+      </header>
+    </div>
+  </section>
+
+  <!-- GRID DE CASOS -->
+  <section id="cases-grid" class="relative bg-white py-20">
+    <div class="mx-auto max-w-7xl px-4 md:px-6">
+      <div class="flex items-baseline justify-between gap-4 mb-6">
+        <h2 class="heavitas text-2xl md:text-3xl text-[#121212]" data-i18n="casesPage.grid.title">Nuestra trayectoria</h2>
+      </div>
+
+      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        {ITEMS.map((it, i) => (
+          <li class="case-card group relative">
+            <article class="h-full rounded-2xl border border-[#575756]/20 bg-white shadow-sm p-5 md:p-6 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
+              <span class="absolute left-0 top-5 h-7 w-[4px] rounded-r bg-[#B41A1D]/80"></span>
+
+              <header class="mb-2 pr-2">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[11px] tracking-widest uppercase text-[#575756]">#{i + 1}</span>
+                  <span class="rounded-full border border-[#575756]/30 px-2 py-0.5 text-[12px] text-[#575756] bg-white" data-i18n={`casesPage.items.${i}.year`}>{it.year}</span>
+                </div>
+                <h3 class="heavitas mt-1 text-xl text-[#121212] leading-snug" data-i18n={`casesPage.items.${i}.title`}>{it.title}</h3>
+              </header>
+
+              <p class="text-[#575756]" data-i18n={`casesPage.items.${i}.desc`}>{it.desc}</p>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 </Layout>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const cards = gsap.utils.toArray<HTMLElement>("#cases-grid .case-card");
+  gsap.set(cards, { opacity: 0, y: 16 });
+
+  gsap.to(cards, {
+    opacity: 1,
+    y: 0,
+    duration: 0.5,
+    stagger: 0.08,
+    ease: "power2.out",
+    scrollTrigger: { trigger: "#cases-grid", start: "top 85%", once: true }
+  });
+
+  // Reaplicar traducciones al cambiar idioma (solo esta página)
+  window.addEventListener("rp:langchange", () => {
+    (window as any).rpI18n?.apply?.(document.body);
+  });
+</script>

@@ -1,0 +1,98 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <!-- HERO -->
+  <section id="contact-hero" class="relative overflow-hidden bg-white py-20">
+    <!-- glows -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute -top-24 left-1/2 h-[44rem] w-[44rem] -translate-x-1/2 rounded-full bg-[#B41A1D]/10 blur-3xl"></div>
+      <div class="absolute bottom-[-20%] right-[-10%] h-[36rem] w-[36rem] rounded-full bg-[#575756]/10 blur-3xl"></div>
+      <div class="absolute inset-0 [background:radial-gradient(transparent_1px,#ffffff_1px)] [background-size:28px_28px] opacity-[0.35]"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-4 md:px-6 pt-28 md:pt-36 pb-12 md:pb-16">
+      <header class="text-center mx-auto max-w-3xl">
+        <div class="flex items-center justify-center gap-3 text-[0.8rem] tracking-widest uppercase text-[#575756]">
+          <span class="inline-block h-[3px] w-8 rounded-full bg-[#B41A1D]"></span>
+          <span data-i18n="contactPage.hero.kicker">Contacto</span>
+        </div>
+        <h1 class="heavitas mt-3 text-4xl md:text-5xl leading-tight text-[#121212]" data-i18n="contactPage.hero.title" data-i18n-html>
+          Hablemos sobre <span class="text-[#B41A1D]">tu proyecto</span>
+        </h1>
+        <p class="mt-4 text-[#575756] md:text-lg" data-i18n="contactPage.hero.subtitle">
+          Cuéntanos tus objetivos y cómo podemos acelerar el camino de la idea al despliegue.
+        </p>
+      </header>
+    </div>
+  </section>
+
+  <!-- FORM EMBED -->
+  <section id="contact-form" class="relative bg-white py-10">
+    <div class="mx-auto max-w-6xl px-4 md:px-6 pb-16 md:pb-24">
+      <div class="contact-card overflow-hidden rounded-3xl bg-white/90 backdrop-blur shadow-xl ring-1 ring-black/5">
+        <!-- Encabezado opcional -->
+        <div class="border-b border-[#575756]/10 px-5 py-8 md:px-6 md:py-5 flex items-center justify-between ">
+          <h2 class="heavitas text-xl md:text-2xl text-[#121212]" data-i18n="contactPage.form.title">Envíanos un mensaje</h2>
+        </div>
+
+        <!-- IFRAME WRAP -->
+        <div class="p-4 md:p-6 ">
+          <div class="rounded-2xl ring-1 ring-[#575756]/20 overflow-hidden bg-white h-[130vh]">
+            <iframe
+              class="clickup-embed clickup-dynamic-height block w-full"
+              src="https://forms.clickup.com/9011902119/f/8cjddn7-20551/ZGKKCZMCXO81NKE3Z2"
+              onwheel=""
+              width="100%"
+              height="100%"
+              style="background: transparent; border: 0;"
+              title="Formulario de contacto"
+              data-i18n-attr="title"
+              data-i18n-title="contactPage.form.iframeTitle"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Script de ClickUp -->
+    <script async src="https://app-cdn.clickup.com/assets/js/forms-embed/v1.js"></script>
+  </section>
+</Layout>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Aparición del hero
+  const hero = document.querySelector<HTMLElement>("#contact-hero header");
+  if (hero) {
+    gsap.from(hero.children, {
+      opacity: 0,
+      y: reduce ? 0 : 16,
+      duration: 0.6,
+      ease: "power3.out",
+      stagger: 0.06
+    });
+  }
+
+  // Entrada de la card del formulario
+  const card = document.querySelector<HTMLDivElement>(".contact-card");
+  if (card) {
+    gsap.from(card, {
+      opacity: 0,
+      y: reduce ? 0 : 20,
+      duration: 0.6,
+      ease: "power3.out",
+      scrollTrigger: { trigger: card, start: "top 85%", once: true }
+    });
+  }
+
+  // Re-aplicar i18n de esta página al cambiar idioma
+  window.addEventListener("rp:langchange", () => {
+    (window as any).rpI18n?.apply?.(document.body);
+  });
+</script>

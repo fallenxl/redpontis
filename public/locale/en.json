@@ -4,7 +4,8 @@
     "home": "Home",
     "about": "About",
     "factory": "Factory",
-    "contact": "Contact"
+    "contact": "Contact",
+    "subNav": {"studyCases": "Success Stories" }
   },
   "ui": { "openMenu": "Open menu", "language": "Language" },
   "hero": {
@@ -274,6 +275,71 @@
           "desc": "PCI DSS / PCI PIN, ISO 9001 / 37001, and security best practices."
         }
       ]
+    }
+  },
+    "casesPage": {
+    "hero": {
+      "kicker": "Success stories",
+      "title": "Every challenge is a chance to <span class='text-[#B41A1D]'>innovate</span>",
+      "subtitle": "Discover how our solutions have transformed our clients’ operations."
+    },
+    "grid": {
+      "title": "Our track record",
+      "countLabel": "cases"
+    },
+    "items": [
+      {
+        "year": "2015",
+        "title": "eCore Switch for Niubiz",
+        "desc": "Implementation of Visa Pagos e-commerce platform, supporting 3M daily transactions."
+      },
+      {
+        "year": "2017",
+        "title": "Payment Gateway 2.0",
+        "desc": "Integration with Pago App and Pago Web with anti-fraud and 3DS for Niubiz."
+      },
+      {
+        "year": "2018",
+        "title": "Real-time payments (Visa Direct)",
+        "desc": "Over 3M daily transactions with Yape and Plin."
+      },
+      {
+        "year": "2019",
+        "title": "White-label POS for Culqi",
+        "desc": "In-person payment channel, reducing costs and time-to-market."
+      },
+      {
+        "year": "2020",
+        "title": "Conversion uplift",
+        "desc": "+10% in recurring collections for Oncosalud."
+      },
+      {
+        "year": "2021",
+        "title": "BackOffice and Tokenization",
+        "desc": "Diners Club marketplace and tokenization platform for Oncosalud."
+      },
+      {
+        "year": "2023",
+        "title": "BBVA and Culqi innovations",
+        "desc": "Terminals for BBVA, Tap To Phone NFC, and +3B soles processed by Culqi."
+      },
+      {
+        "year": "2024",
+        "title": "NFC wristbands UENO Bank",
+        "desc": "Closed-loop payment system in Paraguay."
+      }
+    ]
+  },
+    "contactPage": {
+    "hero": {
+      "kicker": "Contact",
+      "title": "Let’s talk about <span class='text-[#B41A1D]'>your project</span>",
+      "subtitle": "Tell us your goals and how we can speed up the path from idea to launch."
+    },
+    "form": {
+      "title": "Send us a message",
+      "helper": "Typical response time: 24–48 business hours",
+      "iframeTitle": "Contact form"
     }
   }
 }

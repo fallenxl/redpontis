@@ -4,7 +4,8 @@
     "home": "Inicio",
     "about": "Nosotros",
     "factory": "Fábrica",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "subNav": {"studyCases": "Casos de Éxito" }
   },
   "ui": { "openMenu": "Abrir menú", "language": "Idioma" },
   "hero": {
@@ -71,7 +72,7 @@
   },
    "footer": {
     "hashtag": { "chunk1": "#WeCreate", "chunk2": "ToInnovate" },
-    "cta": "Hablemos",
+    "cta": "Conversemos",
     "brandAlt": "Red Pontis",
     "brandSrOnly": "Red Pontis",
     "brandDesc": "Fábrica de software especializada en el ecosistema de pagos. Construimos plataformas seguras y escalables para adquirentes, fintechs y comercios en LATAM.",
@@ -230,6 +231,71 @@
           "desc": "PCI DSS / PCI PIN, ISO 9001 / 37001 y mejores prácticas de seguridad."
         }
       ]
+    }
+  },
+  "casesPage": {
+    "hero": {
+      "kicker": "Casos de éxito",
+      "title": "Cada desafío es una oportunidad para <span class='text-[#B41A1D]'>innovar</span>",
+      "subtitle": "Descubre cómo nuestras soluciones han transformado la operación de nuestros clientes."
+    },
+    "grid": {
+      "title": "Nuestra trayectoria",
+      "countLabel": "casos"
+    },
+    "items": [
+      {
+        "year": "2015",
+        "title": "eCore Switch para Niubiz",
+        "desc": "Implementación de la plataforma de comercio electrónico Visa Pagos, soportando 3M transacciones diarias."
+      },
+      {
+        "year": "2017",
+        "title": "Payment Gateway 2.0",
+        "desc": "Integración a Pago App y Pago Web con antifraude y 3DS para Niubiz."
+      },
+      {
+        "year": "2018",
+        "title": "Pagos en tiempo real (Visa Direct)",
+        "desc": "Más de 3M transacciones diarias con Yape y Plin."
+      },
+      {
+        "year": "2019",
+        "title": "POS marca blanca para Culqi",
+        "desc": "Canal de pago presencial, reduciendo costos y time to market."
+      },
+      {
+        "year": "2020",
+        "title": "Mejora en conversión",
+        "desc": "+10% en cobros recurrentes para Oncosalud."
+      },
+      {
+        "year": "2021",
+        "title": "BackOffice y Tokenización",
+        "desc": "Marketplace Diners Club y plataforma de tokenización para Oncosalud."
+      },
+      {
+        "year": "2023",
+        "title": "Innovaciones BBVA y Culqi",
+        "desc": "Terminales para BBVA, Tap To Phone NFC y +3B soles procesados por Culqi."
+      },
+      {
+        "year": "2024",
+        "title": "Pulseras NFC UENO Bank",
+        "desc": "Sistema cerrado de pagos en Paraguay."
+      }
+    ]
+  },
+    "contactPage": {
+    "hero": {
+      "kicker": "Contacto",
+      "title": "Hablemos sobre <span class='text-[#B41A1D]'>tu proyecto</span>",
+      "subtitle": "Cuéntanos tus objetivos y cómo podemos acelerar el camino de la idea al despliegue."
+    },
+    "form": {
+      "title": "Envíanos un mensaje",
+      "helper": "Tiempo de respuesta habitual: 24-48h hábiles",
+      "iframeTitle": "Formulario de contacto"
     }
   }
 }

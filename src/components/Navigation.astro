@@ -19,7 +19,7 @@ const links: NavLink[] = [
 
 /** Subsecciones de “Nosotros” */
 const aboutSubs = [
-  { path: "/casos-de-exito", label: "Casos de éxito" },
+  { path: "/casos-de-exito", i18n: "nav.subNav.studyCases", label: "Casos de Éxito" },
 ];
 ---
 
@@ -63,14 +63,15 @@ const aboutSubs = [
                       <!-- Dropdown -->
                       <div
                         id="aboutDropdown"
-                        class="pointer-events-none absolute left-0 top-[calc(100%+8px)] min-w-[220px] rounded-xl border border-[#575756]/15 bg-white shadow-lg opacity-0 translate-y-2 will-change-transform"
+                        class="pointer-events-none absolute left-0 top-[calc(100%)] min-w-[180px] rounded-xl border border-[#575756]/15 bg-white shadow-lg opacity-0 translate-y-2 will-change-transform"
                       >
-                        <ul class="py-2">
+                        <ul class="">
                           {aboutSubs.map((s) => (
                             <li>
                               <a
                                 href={s.path}
-                                class="block px-4 py-2.5 text-sm text-[#575756] hover:text-[#B41A1D] hover:bg-[#B41A1D]/10"
+                                data-i18n="nav.subNav.studyCases"
+                                class="block px-4 py-3 text-sm text-[#575756] hover:text-[#B41A1D] rounded-xl"
                               >
                                 {s.label}
                               </a>
@@ -116,7 +117,7 @@ const aboutSubs = [
     </div>
 
     <!-- Menú Móvil -->
-    <div id="mobileMenu" class="md:hidden origin-top  overflow-hidden">
+    <div id="mobileMenu" class="hidden md:hidden origin-top  overflow-hidden">
       <div class="my-3 rounded-2xl border border-[#575756]/20 bg-white shadow-sm">
         <!-- Lang Switcher Mobile -->
         <div class="px-4 py-3 border-b border-[#575756]/10 flex justify-between items-center">
@@ -142,6 +143,7 @@ const aboutSubs = [
                     <li>
                       <a
                         href={s.path}
+                        data-i18n="nav.subNav.studyCases"
                         class="block py-2 text-sm text-[#575756] hover:text-[#B41A1D]"
                       >
                         {s.label}
@@ -191,7 +193,7 @@ const aboutSubs = [
 
     gsap.killTweensOf(mobileMenu);
     // Estado de partida colapsado
-    gsap.set(mobileMenu, { overflow: "hidden", opacity: 0, height: 0, pointerEvents: "auto" });
+    gsap.set(mobileMenu, { overflow: "hidden", opacity: 0, height: 0, pointerEvents: "auto", display: "block" });
 
     const h = measureOpenHeight(mobileMenu);
 
