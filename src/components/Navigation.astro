@@ -8,13 +8,18 @@ const currentPath = Astro.url.pathname;
 const isActive = (p: string) =>
   currentPath === p || (p !== "/" && currentPath.startsWith(p));
 
-/** Rutas estáticas (no cambian con el idioma) pero con claves i18n para el label */
+/** Rutas */
 type NavLink = { path: string; i18n: string };
 const links: NavLink[] = [
   { path: "/",          i18n: "nav.home" },
   { path: "/nosotros",  i18n: "nav.about" },
   { path: "/fabrica",   i18n: "nav.factory" },
   { path: "/contacto",  i18n: "nav.contact" },
+];
+
+/** Subsecciones de “Nosotros” */
+const aboutSubs = [
+  { path: "/casos-de-exito", label: "Casos de éxito" },
 ];
 ---
 
@@ -31,17 +36,63 @@ const links: NavLink[] = [
       <div class="hidden md:flex items-center gap-4">
         <ul class="flex items-center gap-1 rounded-2xl bg-[#575756]/10 p-1">
           {links.map((l) => (
-            <li>
-              <a
-                href={l.path}
-                class={`block rounded-xl px-4 py-2 text-sm font-medium transition-colors ${
-                  isActive(l.path)
-                    ? "text-[#B41A1D] bg-[#B41A1D]/10"
-                    : "text-[#575756] hover:text-[#B41A1D] hover:bg-[#B41A1D]/10"
-                }`}
-              >
-                <span data-i18n={l.i18n}>Inicio</span>
-              </a>
+            <li class="relative">
+              {
+                l.path === "/nosotros"
+                  ? (
+                    /* Item especial: link directo + dropdown en hover/focus */
+                    <div class="group/nav relative">
+                      <a
+                        href={l.path}
+                        class={`flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-colors ${
+                          isActive(l.path)
+                            ? "text-[#B41A1D] bg-[#B41A1D]/10"
+                            : "text-[#575756] hover:text-[#B41A1D] hover:bg-[#B41A1D]/10"
+                        }`}
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        id="aboutTrigger"
+                      >
+                        <span data-i18n={l.i18n}>Nosotros</span>
+                        <!-- caret visual (solo decorativo) -->
+                        <svg class="h-4 w-4 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.96l3.71-3.73a.75.75 0 111.08 1.04l-4.25 4.27a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+                        </svg>
+                      </a>
+
+                      <!-- Dropdown -->
+                      <div
+                        id="aboutDropdown"
+                        class="pointer-events-none absolute left-0 top-[calc(100%+8px)] min-w-[220px] rounded-xl border border-[#575756]/15 bg-white shadow-lg opacity-0 translate-y-2 will-change-transform"
+                      >
+                        <ul class="py-2">
+                          {aboutSubs.map((s) => (
+                            <li>
+                              <a
+                                href={s.path}
+                                class="block px-4 py-2.5 text-sm text-[#575756] hover:text-[#B41A1D] hover:bg-[#B41A1D]/10"
+                              >
+                                {s.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )
+                  : (
+                    <a
+                      href={l.path}
+                      class={`block rounded-xl px-4 py-2 text-sm font-medium transition-colors ${
+                        isActive(l.path)
+                          ? "text-[#B41A1D] bg-[#B41A1D]/10"
+                          : "text-[#575756] hover:text-[#B41A1D] hover:bg-[#B41A1D]/10"
+                      }`}
+                    >
+                      <span data-i18n={l.i18n}>Inicio</span>
+                    </a>
+                  )
+              }
             </li>
           ))}
         </ul>
@@ -65,7 +116,7 @@ const links: NavLink[] = [
     </div>
 
     <!-- Menú Móvil -->
-    <div id="mobileMenu" class="md:hidden origin-top scale-y-0 h-0 overflow-hidden">
+    <div id="mobileMenu" class="md:hidden origin-top  overflow-hidden">
       <div class="my-3 rounded-2xl border border-[#575756]/20 bg-white shadow-sm">
         <!-- Lang Switcher Mobile -->
         <div class="px-4 py-3 border-b border-[#575756]/10 flex justify-between items-center">
@@ -84,6 +135,21 @@ const links: NavLink[] = [
               >
                 <span data-i18n={l.i18n}>Inicio</span>
               </a>
+
+              {l.path === "/nosotros" && (
+                <ul class="pl-6 pb-2">
+                  {aboutSubs.map((s) => (
+                    <li>
+                      <a
+                        href={s.path}
+                        class="block py-2 text-sm text-[#575756] hover:text-[#B41A1D]"
+                      >
+                        {s.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>
@@ -99,7 +165,7 @@ const links: NavLink[] = [
   const menuToggle = document.querySelector<HTMLButtonElement>("#menuToggle")!;
   const mobileMenu = document.querySelector<HTMLDivElement>("#mobileMenu")!;
 
-  // Sombra en scroll
+  // Sombra en scroll (igual que antes)
   let lastY = 0;
   window.addEventListener("scroll", () => {
     const scrolled = window.scrollY > 8;
@@ -108,31 +174,136 @@ const links: NavLink[] = [
     lastY = window.scrollY;
   });
 
-  // Menú móvil con animación
+  // ========= Menú móvil (sin scale, con medición correcta) =========
   let isOpen = false;
-  const openMenu = () => {
+
+  function measureOpenHeight(el: HTMLElement) {
+    // Limpia transforms y deja que calcule su alto natural
+    gsap.set(el, { clearProps: "transform", height: "auto", opacity: 1, pointerEvents: "auto" });
+    // Usa scrollHeight (no se ve afectado por transforms)
+    return el.scrollHeight;
+  }
+
+  function openMenu() {
+    if (isOpen) return;
     isOpen = true;
     menuToggle.setAttribute("aria-expanded", "true");
-    gsap.set(mobileMenu, { height: "auto" });
-    const h = mobileMenu.getBoundingClientRect().height;
+
+    gsap.killTweensOf(mobileMenu);
+    // Estado de partida colapsado
+    gsap.set(mobileMenu, { overflow: "hidden", opacity: 0, height: 0, pointerEvents: "auto" });
+
+    const h = measureOpenHeight(mobileMenu);
+
     gsap.fromTo(
       mobileMenu,
-      { height: 0, scaleY: 0.95, opacity: 0 },
-      { height: h, scaleY: 1, opacity: 1, duration: 0.35, ease: "power2.out" }
+      { height: 0, opacity: 0 },
+      {
+        height: h,
+        opacity: 1,
+        duration: 0.28,
+        ease: "power2.out",
+        onComplete: () => {
+          // Deja height en auto para que el contenido interno pueda crecer/achicar
+          gsap.set(mobileMenu, { height: "auto" });
+        }
+      }
     );
-  };
-  const closeMenu = () => {
+  }
+
+  function closeMenu() {
+    if (!isOpen) return;
     isOpen = false;
     menuToggle.setAttribute("aria-expanded", "false");
-    gsap.to(mobileMenu, { height: 0, scaleY: 0.95, opacity: 0, duration: 0.28, ease: "power2.in" });
-  };
-  menuToggle.addEventListener("click", () => (isOpen ? closeMenu() : openMenu()));
-  mobileMenu.addEventListener("click", (e: MouseEvent) => {
+
+    gsap.killTweensOf(mobileMenu);
+
+    // Medimos el alto actual (puede estar en 'auto')
+    const current = mobileMenu.getBoundingClientRect().height || mobileMenu.scrollHeight;
+
+    gsap.fromTo(
+      mobileMenu,
+      { height: current, opacity: 1 },
+      {
+        height: 0,
+        opacity: 0,
+        duration: 0.24,
+        ease: "power2.in",
+        onComplete: () => {
+          // Desactiva interacción cuando está cerrado
+          gsap.set(mobileMenu, { pointerEvents: "none" });
+        }
+      }
+    );
+  }
+
+  // Toggle con guard contra doble click / tweens activos
+  menuToggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (gsap.isTweening(mobileMenu)) return; // evita “doble toque” en animación
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  // Cierra al navegar dentro del menú en mobile
+  mobileMenu.addEventListener("click", (e) => {
     const t = e.target as HTMLElement;
     if (t && t.closest("a")) closeMenu();
   });
 
-  // Re-aplicar traducciones si cambia el idioma (por si se monta después)
+  // Auto-reset al cambiar a desktop
+  const mq = window.matchMedia("(min-width: 768px)");
+  const syncByMQ = () => {
+    if (mq.matches) {
+      // En desktop: asegúrate de que esté cerrado visualmente para no interferir
+      isOpen = false;
+      menuToggle.setAttribute("aria-expanded", "false");
+      gsap.set(mobileMenu, { height: 0, opacity: 0, pointerEvents: "none" });
+    }
+  };
+  mq.addEventListener?.("change", syncByMQ);
+  syncByMQ();
+
+  // ========= Dropdown “Nosotros” (desktop) =========
+  const aboutWrap = document.querySelector<HTMLDivElement>(".group\\/nav");
+  const aboutDropdown = document.querySelector<HTMLDivElement>("#aboutDropdown");
+  const aboutTrigger = document.querySelector<HTMLAnchorElement>("#aboutTrigger");
+
+  if (aboutWrap && aboutDropdown && aboutTrigger) {
+    let over = false;
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo(aboutDropdown, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out" });
+
+    const show = () => {
+      if (over) return;
+      over = true;
+      aboutDropdown.style.pointerEvents = "auto";
+      tl.play(0);
+      aboutTrigger.setAttribute("aria-expanded", "true");
+    };
+    const hide = () => {
+      over = false;
+      gsap.to(aboutDropdown, {
+        opacity: 0,
+        y: 8,
+        duration: 0.18,
+        ease: "power2.in",
+        onComplete: () => {
+          if (!over) aboutDropdown.style.pointerEvents = "none";
+          aboutTrigger.setAttribute("aria-expanded", "false");
+        },
+      });
+    };
+
+    aboutWrap.addEventListener("mouseenter", show);
+    aboutWrap.addEventListener("mouseleave", hide);
+    aboutTrigger.addEventListener("focus", show);
+    aboutDropdown.addEventListener("focusout", (e: FocusEvent) => {
+      const related = e.relatedTarget as HTMLElement | null;
+      if (!related || !aboutWrap.contains(related)) hide();
+    });
+  }
+
+  // i18n refresco
   window.addEventListener("rp:langchange", () => {
     (window as any).rpI18n?.apply?.(document.getElementById("siteHeader")!);
   });
