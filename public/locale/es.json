@@ -155,7 +155,7 @@
       "cards": [
         { "name": "Giancarlo Gallardo", "role": "VP of Technology", "imgAlt": "Gerente 1" },
         { "name": "Jose Ordóñez", "role": "VP Product Innovation", "imgAlt": "Gerente 2" },
-        { "name": "Nombre del gerente", "role": "Puesto / Área", "imgAlt": "Gerente 3" }
+        { "name": "César Rodríguez", "role": "CEO", "imgAlt": "Gerente 3" }
       ],
       "linkedinLabel": "LinkedIn"
     },
