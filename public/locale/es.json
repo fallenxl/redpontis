@@ -81,14 +81,7 @@
     "nav": ["Inicio", "Nosotros", "Fábrica", "Contacto"],
     "solutionsTitle": "Soluciones",
     "solutions": [
-      "eCore Switch",
-      "Payment Gateway",
-      "Tap to Phone",
-      "Cobros Recurrentes",
-      "Billetera Móvil",
-      "Tokenización",
-      "Real Time Payments",
-      "Generador de QR"
+      "eCore Switch"
     ],
     "legal": {
       "rights": "Todos los derechos reservados.",
