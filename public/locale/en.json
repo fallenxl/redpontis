@@ -306,56 +306,59 @@
     "items": [
       {
         "year": "2015",
-        "title": "eCore Switch for Niubiz",
-        "desc": "Implementation of Visa Pagos e-commerce platform, supporting 3M daily transactions."
+        "title": "eCore Switch",
+        "desc": "Implementation of acquirer's e-commerce platform, supporting 3M daily transactions."
       },
       {
         "year": "2017",
         "title": "Payment Gateway 2.0",
-        "desc": "Integration with Pago App and Pago Web with anti-fraud and 3DS for Niubiz."
+        "desc": "Integration with Payment App and Payment Web for acquirer."
       },
       {
         "year": "2018",
         "title": "Real-time payments (Visa Direct)",
-        "desc": "Over 3M daily transactions with Yape and Plin."
+        "desc": "Currently supporting 3M daily transactions from Yape and Plin."
       },
       {
         "year": "2019",
-        "title": "White-label POS for Culqi",
-        "desc": "In-person payment channel, reducing costs and time-to-market."
+        "title": "White-label POS",
+        "desc": "Payment channel for new acquirer in Peru through our Payment Gateway, reducing costs and time to market."
       },
       {
         "year": "2020",
-        "title": "Conversion uplift",
-        "desc": "+10% in recurring collections for Oncosalud."
+        "title": "Conversion improvement",
+        "desc": "+10% in recurring collections and implementation of new recurring billing platform for insurance company."
       },
       {
         "year": "2021",
-        "title": "BackOffice and Tokenization",
-        "desc": "Diners Club marketplace and tokenization platform for Oncosalud."
+        "title": "BackOffice",
+        "desc": "Implementation for Marketplace."
+      },
+      {
+        "year": "2021",
+        "title": "Tokenization",
+        "desc": "Implementation of tokenization platform for insurance company."
       },
       {
         "year": "2023",
-        "title": "BBVA and Culqi innovations",
-        "desc": "Terminals for BBVA, Tap To Phone NFC, and +3B soles processed by Culqi."
+        "title": "Terminal App",
+        "desc": "Implementation of terminal application, helping become the first acquiring bank in Peru."
+      },
+      {
+        "year": "2023",
+        "title": "Tap to Phone",
+        "desc": "Implementation of Tap to Phone solution for mobile payments acceptance with NFC technology."
+      },
+      {
+        "year": "2023",
+        "title": "Milestones",
+        "desc": "New acquirer achieved more than 3B soles processed through our platform."
       },
       {
         "year": "2024",
-        "title": "NFC wristbands UENO Bank",
-        "desc": "Closed-loop payment system in Paraguay."
+        "title": "NFC Wristbands",
+        "desc": "Deployment of closed-loop system solution for NFC wristband payments in Paraguay."
       }
-    ]
-  },
-    "contactPage": {
-    "hero": {
-      "kicker": "Contact",
-      "title": "Let’s talk about <span class='text-[#B41A1D]'>your project</span>",
-      "subtitle": "Tell us your goals and how we can speed up the path from idea to launch."
-    },
-    "form": {
-      "title": "Send us a message",
-      "helper": "Typical response time: 24–48 business hours",
-      "iframeTitle": "Contact form"
-    }
+        ]
   }
 }
