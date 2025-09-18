@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../assets/logo-wtext.png";
-
+import ReclamationBook from "../assets/docs/reclamaciones.pdf";
 const year = new Date().getFullYear();
 
 const navLinks = [
@@ -51,7 +51,7 @@ const legal = [
     <!-- Grid principal -->
     <div class="grid grid-cols-1 md:grid-cols-12 gap-10 py-12">
       <!-- Col 1: Marca -->
-      <div class="ft-col md:col-span-5">
+      <div class="ft-col md:col-span-4">
         <a href="/" class="inline-flex items-center gap-3">
           <Image
             src={logo}
@@ -70,18 +70,37 @@ const legal = [
         <div class="mt-5 flex items-center gap-4 text-[#575756]">
           <a
             aria-label="LinkedIn"
-            href="https://www.linkedin.com"
+            href="https://www.linkedin.com/company/redpontis/?viewAsMember=true"
             class="hover:text-[#B41A1D] transition"
             data-i18n-attr="aria-label"
             data-i18n-aria-label="footer.social.linkedin"
           >
             <i class="fa-brands fa-linkedin text-xl" aria-hidden="true"></i>
           </a>
+          <a
+            aria-label="Facebook"
+            href="https://www.facebook.com/profile.php?id=100090249673156"
+            class="hover:text-[#B41A1D] transition"
+            data-i18n-attr="aria-label"
+            data-i18n-aria-label="footer.social.facebook"
+          >
+            <i class="fa-brands fa-facebook text-xl" aria-hidden="true"></i>
+          </a>
+          <a
+            aria-label="Instagram"
+            href="https://www.instagram.com/redpontis/?hl=es-la"
+            class="hover:text-[#B41A1D] transition"
+            data-i18n-attr="aria-label"
+            data-i18n-aria-label="footer.social.instagram"
+          >
+
+            <i class="fa-brands fa-instagram text-xl" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
 
       <!-- Col 2: Navegación -->
-      <nav class="ft-col md:col-span-3">
+      <nav class="ft-col md:col-span-2">
         <h3 class="text-sm font-semibold text-[#121212]" data-i18n="footer.navTitle">Navegación</h3>
         <ul class="mt-4 space-y-2">
           {navLinks.map((l, i) => (
@@ -95,7 +114,7 @@ const legal = [
       </nav>
 
       <!-- Col 3: Soluciones -->
-     <nav class="ft-col md:col-span-4">
+     <nav class="ft-col md:col-span-2">
         <h3 class="text-sm font-semibold text-[#121212]" data-i18n="footer.solutionsTitle">Soluciones</h3>
         <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
           {solutions.map((s, i) => (
@@ -105,6 +124,57 @@ const legal = [
               </a>
             </li>
           ))}
+        </ul>
+        <h3 class="mt-6 text-sm font-semibold text-[#121212]" data-i18n="footer.company.title">Compañía</h3>
+        <ul class="mt-4 space-y-2">
+          <li>
+            <a href={ReclamationBook} target="_blank" rel="noopener noreferrer"
+            class="text-sm text-[#575756] hover:text-[#B41A1D] transition">
+              <span data-i18n="footer.company.reclamation">Libro de reclamaciones</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.google.com/presentation/d/1wWHuON9qPf5tr_3EbjQ5AMATxYVBrBpA/edit?slide=id.p1#slide=id.p1"
+            target="_blank" rel="noopener noreferrer"
+            class="text-sm text-[#575756] hover:text-[#B41A1D] transition">
+              <span data-i18n="footer.company.qualityPolicy">Política de calidad</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=xH0UOupG0kyMdX1QvVZQXF4VTjNZuG1OmSsNIC7sqP5UNjlGM1o2TjVLMFVBTzhES0s1RkRVSUNHNC4u"
+            target="_blank" rel="noopener noreferrer"
+            class="text-sm text-[#575756] hover:text-[#B41A1D] transition">
+              <span data-i18n="footer.company.antiCorruption">Política anticorrupción</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- Col 4: Relacionados -->
+      <nav class="ft-col md:col-span-3">
+        <h3 class="text-sm font-semibold text-[#121212]" data-i18n="footer.related.title">Relacionado</h3>
+        <ul class="mt-4 space-y-2">
+          <li>
+            <a href="https://www.youtube.com/watch?v=WJTL9G0xsNk" 
+            target="_blank" rel="noopener noreferrer"
+            class="text-sm text-[#575756] hover:text-[#B41A1D] transition">
+              <span data-i18n="footer.related.implementations">Implementaciones</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@redpontis.com"
+            class="text-sm text-[#575756] hover:text-[#B41A1D] transition">
+              <span>info@redpontis.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:+51946847548"
+            class="text-sm text-[#575756] hover:text-[#B41A1D] transition">
+              <span>+51 946 847 548</span>
+            </a>
+          </li>
+          <li>
+            <span class="text-sm text-[#575756]">Calle Coronel Andres Reyes 437, ofi. 902 San Isidro, Lima - Perú</span>
+          </li>
         </ul>
       </nav>
 
@@ -117,7 +187,7 @@ const legal = [
       <p class="text-sm text-[#575756]/80">
         © {year} Red Pontis. <span data-i18n="footer.legal.rights">Todos los derechos reservados.</span>
       </p>
-      <ul class="flex flex-wrap items-center gap-5">
+      <!-- <ul class="flex flex-wrap items-center gap-5">
         {legal.map((l, i) => (
           <li>
             <a href={l.href} class="text-sm text-[#575756]/80 hover:text-[#B41A1D] transition">
@@ -125,7 +195,7 @@ const legal = [
             </a>
           </li>
         ))}
-      </ul>
+      </ul> -->
     </div>
   </div>
 </footer>

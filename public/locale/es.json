@@ -83,6 +83,16 @@
     "solutions": [
       "eCore Switch"
     ],
+    "company": {
+      "title": "Compañía",
+      "reclamation": "Libro de reclamaciones",
+      "qualityPolicy": "Política de calidad",
+      "antiCorruption": "Anticorrupción"
+    },
+    "related": {
+      "title": "Relacionado",
+      "implementations": "Implementaciones"
+    },
     "legal": {
       "rights": "Todos los derechos reservados.",
       "privacy": "Privacidad",
@@ -113,6 +123,31 @@
       "kicker": "Nosotros",
       "title": "Más que software: <span class='text-[#B41A1D]'>una experiencia completa</span>",
       "subtitle": "Diseñamos, integramos y operamos soluciones para acelerar la innovación con seguridad y escala."
+    },
+    "mv": {
+      "kicker": "Nuestra compañía",
+      "title": "Misión y Visión",
+      "mission": {
+        "title": "Misión",
+        "desc": "Ofrecer soluciones integrales que agreguen valor a transacciones financieras y no financieras, optimizando operaciones y mejorando la experiencia del cliente mediante innovación continua."
+      },
+      "vision": {
+        "title": "Visión",
+        "desc": "Forjar un ecosistema de pagos distintivo en LATAM donde la innovación y la colaboración impulsen inclusión financiera, eficiencia y crecimiento sostenible."
+      }
+    },
+    "skills": {
+      "title": "Habilidades del equipo",
+      "items": [
+        "Comunicación asertiva",
+        "Adaptabilidad",
+        "Trabajo en equipo",
+        "Responsabilidad"
+      ]
+    },
+    "culture": {
+      "title": "Nuestra cultura",
+      "desc": "Enfocada en aprendizaje continuo, trabajo colaborativo, integridad y respeto para entregar excelencia de forma consistente."
     },
     "who": {
       "title": "Somos una fábrica de software especializada en el ecosistema de pagos.",
@@ -171,59 +206,47 @@
     },
     "cards": {
       "present": [
-        {
-          "title": "POS / mPOS",
-          "desc": "Terminales físicas y móviles con chip, banda y contactless. Integración a backoffice y reportería."
-        },
-        {
-          "title": "Tap to Phone (marca blanca)",
-          "desc": "Aceptación contactless en smartphones. Onboarding ágil, KYC y administración centralizada."
-        },
-        {
-          "title": "Eloop en tienda",
-          "desc": "Digitalización de depósitos, retiros, conciliaciones y auditoría con trazabilidad."
-        },
-        {
-          "title": "Tokenización presencial",
-          "desc": "Vault seguro para reutilización de tarjetas y experiencias omnicanal."
-        }
-      ],
-      "notPresent": [
-        {
-          "title": "Payment Gateway",
-          "desc": "Pasarela para ecommerce con antifraude, 3DS, split, multi-adquirente y fallback."
-        },
-        {
-          "title": "Cobros recurrentes",
-          "desc": "Motor de suscripciones con prorrateo, retiros programados y alertas de falla."
-        },
-        {
-          "title": "RT-Payments (Visa Direct / MC Send)",
-          "desc": "Envío y recepción de fondos 24/7 para devoluciones, dispersión y remesas."
-        },
-        {
-          "title": "Billetera móvil + QR",
-          "desc": "QR estático/dinámico, NFC, loyalty y pagos de servicios con UX ágil."
-        }
-      ],
-      "valueAdded": [
-        {
-          "title": "Analytics",
-          "desc": "Paneles de conversión, rutas de fallo y cohortes por canal, producto y comercio."
-        },
-        {
-          "title": "Fraude & Riesgo",
-          "desc": "Reglas dinámicas, listas y conexión con proveedores externos."
-        },
-        {
-          "title": "Backoffice",
-          "desc": "Gestión de comercios, liquidaciones, ajustes y reclamos."
-        },
-        {
-          "title": "Compliance",
-          "desc": "PCI DSS / PCI PIN, ISO 9001 / 37001 y mejores prácticas de seguridad."
-        }
-      ]
+      {
+        "title": "POS / mPOS",
+        "desc": "Terminales físicas para tarjeta presente que permiten el procesamiento de pagos."
+      },
+      {
+        "title": "Tap to Phone",
+        "desc": "Aplicativo innovador en modelo marca blanca para aceptación de pagos contactless, utilizando un smartphone o tablet para conseguir un checkout más rápido, fluido y sin fricción."
+      },
+      {
+        "title": "Red Corresponsal",
+        "desc": "Amplía tu alcance con una red de comercios afiliados que permiten a los usuarios realizar pagos, retiros, depósitos y más, brindando acceso financiero en ubicaciones estratégicas."
+      }
+    ],
+    "notPresent": [
+      {
+        "title": "Pasarela de Comercio Electrónico",
+        "desc": "Facilita pagos en línea de manera rápida y segura, integrando múltiples métodos de pago y ofreciendo herramientas avanzadas de gestión para potenciar tu negocio digital."
+      },
+      {
+        "title": "Billetera móvil",
+        "desc": "Ofrece diversas formas de concretar pagos, desde códigos QR que la app lee para realizar la compra, hasta NFC y soluciones de valor agregado como loyalty, pago de servicios, reporterías y más."
+      },
+      {
+        "title": "Generador de QR",
+        "desc": "Generación de QRs estáticos y dinámicos para tus comercios, personalizable a través de interfaces amigables y ágiles para los pagos."
+      },
+      {
+        "title": "Tokenización",
+        "desc": "Protege los datos sensibles en identificadores únicos que no pueden ser explotados fuera del sistema, asegurando transacciones seguras y reduciendo el riesgo de fraude en pagos digitales."
+      }
+    ],
+    "valueAdded": [
+      {
+        "title": "CloseLoop",
+        "desc": "Digitaliza y controla tus procesos internos con trazabilidad, autorización de flujos y gestión centralizada. Una solución para empresas que necesitan orden, eficiencia y visibilidad en tiempo real."
+      },
+      {
+        "title": "Motor de cobro recurrente",
+        "desc": "Permite la gestión de cobros para los comercios, siendo una herramienta de cobros mensuales, semanales o diarios."
+      }
+    ]
     }
   },
   "casesPage": {

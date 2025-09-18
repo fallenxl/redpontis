@@ -1,0 +1,87 @@
+---
+  const site = 'https://redpontis.com'; // <-- cámbialo a tu dominio
+  const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+  const canonical = new URL(pathname, site).toString();
+  const lang = (Astro.url.searchParams.get('lang') || 'es').toLowerCase();
+  const title = lang === 'en'
+    ? 'Red Pontis — Next-gen payments for LATAM'
+    : 'Red Pontis — Pagos de próxima generación en LATAM';
+  const description = lang === 'en'
+    ? 'We build a next-gen payments ecosystem for acquirers and merchants in Latin America. Over 10 years creating innovative digital financial solutions.'
+    : 'Construimos un ecosistema de pagos de próxima generación para adquirentes y comercios en América Latina. Más de 10 años creando soluciones financieras digitales e innovadoras.';
+  const ogImage = '/og/redpontis-og.jpg'; // 1200x630
+  ---
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="application-name" content="Red Pontis" />
+    <meta name="theme-color" content="#B41A1D" />
+
+    <!-- SEO i18n: alternates por query ?lang -->
+    <link rel="alternate" hreflang="es" href={`${canonical}?lang=es`} />
+    <link rel="alternate" hreflang="en" href={`${canonical}?lang=en`} />
+    <link rel="alternate" hreflang="x-default" href={`${canonical}?lang=es`} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Red Pontis" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <script type="application/ld+json">
+    {
+        "@context":"https://schema.org",
+        "@type":"Organization",
+        "name":"Red Pontis",
+        "url":"{site}",
+        "logo":"{site}/logo.svg",
+        "sameAs":[
+        "https://www.linkedin.com/company/redpontis" /* agrega otras si aplica */
+        ],
+        "areaServed":[
+        "Argentina","Brasil","Chile","Colombia","Ecuador","Honduras","México","Panamá","Paraguay","Perú","Uruguay"
+        ],
+        "description": {JSON.stringify(description)}
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context":"https://schema.org",
+        "@type":"WebSite",
+        "url":"{site}",
+        "name":"Red Pontis",
+        "potentialAction":{
+        "@type":"SearchAction",
+        "target":"{site}/search?q={q}",
+        "query-input":"required name=q"
+        }
+    }
+    </script>
+</head>

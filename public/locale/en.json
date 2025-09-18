@@ -83,6 +83,16 @@
     "solutions": [
       "eCore Switch"
     ],
+    "company": {
+      "title": "Company",
+      "reclamation": "Reclamation Book",
+      "qualityPolicy": "Quality Policy",
+      "antiCorruption": "Anti-Corruption"
+    },
+    "related": {
+      "title": "Related",
+      "implementations": "Implementations"
+    },
     "legal": {
       "rights": "All rights reserved.",
       "privacy": "Privacy",
@@ -119,6 +129,31 @@
       "kicker": "About us",
       "title": "More than software: <span class='text-[#B41A1D]'>a complete experience</span>",
       "subtitle": "We design, integrate, and operate solutions to accelerate innovation with security and scale."
+    },
+      "mv": {
+      "kicker": "Our company",
+      "title": "Mission & Vision",
+      "mission": {
+        "title": "Mission",
+        "desc": "Provide comprehensive solutions that add value to financial and non-financial transactions, optimizing operations and improving customer experience through continuous innovation."
+      },
+      "vision": {
+        "title": "Vision",
+        "desc": "Build a distinctive payments ecosystem in LATAM where innovation and collaboration drive financial inclusion, efficiency, and sustainable growth."
+      }
+    },
+    "culture": {
+      "title": "Our culture",
+      "desc": "Focused on continuous learning, collaboration, integrity, and respect to deliver consistent excellence."
+    },
+    "skills": {
+      "title": "Team skills",
+      "items": [
+        "Assertive communication",
+        "Adaptability",
+        "Teamwork",
+        "Accountability"
+      ]
     },
     "who": {
       "title": "We are a software factory specialized in the payments ecosystem.",
@@ -214,60 +249,48 @@
       "valueAdded": "Value Added"
     },
     "cards": {
-      "present": [
-        {
-          "title": "POS / mPOS",
-          "desc": "Physical and mobile terminals with chip, magstripe, and contactless. Integrated with backoffice and reporting."
-        },
-        {
-          "title": "Tap to Phone (white label)",
-          "desc": "Contactless acceptance on smartphones. Agile onboarding, KYC, and centralized management."
-        },
-        {
-          "title": "In-store Eloop",
-          "desc": "Digitalization of deposits, withdrawals, reconciliations, and audits with traceability."
-        },
-        {
-          "title": "In-person Tokenization",
-          "desc": "Secure vault for card reuse and omnichannel experiences."
-        }
-      ],
-      "notPresent": [
-        {
-          "title": "Payment Gateway",
-          "desc": "E-commerce gateway with antifraud, 3DS, split, multi-acquirer, and fallback."
-        },
-        {
-          "title": "Recurring Payments",
-          "desc": "Subscription engine with proration, scheduled debits, and failure alerts."
-        },
-        {
-          "title": "RT-Payments (Visa Direct / MC Send)",
-          "desc": "Send and receive funds 24/7 for refunds, disbursements, and remittances."
-        },
-        {
-          "title": "Mobile Wallet + QR",
-          "desc": "Static/dynamic QR, NFC, loyalty, and service payments with smooth UX."
-        }
-      ],
-      "valueAdded": [
-        {
-          "title": "Analytics",
-          "desc": "Conversion dashboards, failure routes, and cohorts by channel, product, and merchant."
-        },
-        {
-          "title": "Fraud & Risk",
-          "desc": "Dynamic rules, lists, and integration with external providers."
-        },
-        {
-          "title": "Backoffice",
-          "desc": "Merchant management, settlements, adjustments, and claims."
-        },
-        {
-          "title": "Compliance",
-          "desc": "PCI DSS / PCI PIN, ISO 9001 / 37001, and security best practices."
-        }
-      ]
+       "present": [
+      {
+        "title": "POS / mPOS",
+        "desc": "Physical terminals for card-present transactions, enabling secure payment processing."
+      },
+      {
+        "title": "Tap to Phone",
+        "desc": "Innovative white-label application for contactless payments, using a smartphone or tablet to achieve faster, smoother, and frictionless checkout."
+      },
+      {
+        "title": "Agent Network",
+        "desc": "Expand your reach with an affiliate merchant network that allows users to make payments, withdrawals, deposits, and more, providing financial access in strategic locations."
+      }
+    ],
+    "notPresent": [
+      {
+        "title": "E-commerce Gateway",
+        "desc": "Facilitates online payments quickly and securely, integrating multiple payment methods and offering advanced management tools to enhance your digital business."
+      },
+      {
+        "title": "Mobile Wallet",
+        "desc": "Provides multiple ways to complete payments, from QR codes scanned by the app to NFC and value-added solutions like loyalty, bill payments, reporting, and more."
+      },
+      {
+        "title": "QR Generator",
+        "desc": "Generates static and dynamic QR codes for your merchants, customizable through user-friendly interfaces for seamless payments."
+      },
+      {
+        "title": "Tokenization",
+        "desc": "Protects sensitive data in unique identifiers that cannot be exploited outside the system, ensuring secure transactions and reducing the risk of fraud in digital payments."
+      }
+    ],
+    "valueAdded": [
+      {
+        "title": "CloseLoop",
+        "desc": "Digitalize and control your internal processes with traceability, flow authorization, and centralized management. A solution for companies that need order, efficiency, and real-time visibility."
+      },
+      {
+        "title": "Recurring Billing Engine",
+        "desc": "Enables billing management for merchants, serving as a tool for monthly, weekly, or daily collections."
+      }
+    ]
     }
   },
     "casesPage": {
