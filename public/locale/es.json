@@ -263,12 +263,12 @@
       {
         "year": "2015",
         "title": "eCore Switch",
-        "desc": "Implementación de la plataforma de comercio electrónico de Adquiriente, soportando 3M transacciones diarias."
+        "desc": "Implementación de la plataforma de comercio electrónico de Adquirente, soportando 3M transacciones diarias."
       },
       {
         "year": "2017",
         "title": "Payment Gateway 2.0",
-        "desc": "Integración a Pago App y Pago Web para Adquiriente."
+        "desc": "Integración a Pago App y Pago Web para Adquirente."
       },
       {
         "year": "2018",
@@ -278,7 +278,7 @@
       {
         "year": "2019",
         "title": "POS marca blanca",
-        "desc": "Canal de pago para nuevo Adquiriente en Peru, a traves de nuestro Payment Gateway, reduciendo costos y time to market."
+        "desc": "Canal de pago para nuevo Adquirente en Peru, a traves de nuestro Payment Gateway, reduciendo costos y time to market."
       },
       {
         "year": "2020",
@@ -298,7 +298,7 @@
       {
         "year": "2023",
         "title": "Terminal App",
-        "desc": "Implementación de la aplicación de terminales, contribuyendo a ser el primer banco adquiriente en el Perú."
+        "desc": "Implementación de la aplicación de terminales, contribuyendo a ser el primer banco adquirente en el Perú."
       },
       {
         "year": "2023",
@@ -308,7 +308,7 @@
        {
         "year": "2023",
         "title": "Hitos",
-        "desc": "Nuevo adquiriente logro mas de 3B de soles transaccionados por nuestra plataforma."
+        "desc": "Nuevo adquirente logro mas de 3B de soles transaccionados por nuestra plataforma."
       },
       {
         "year": "2024",
