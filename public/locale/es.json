@@ -86,7 +86,7 @@
     "company": {
       "title": "Compañía",
       "reclamation": "Libro de reclamaciones",
-      "qualityPolicy": "Política de calidad",
+      "qualityPolicy": "Políticas SIG",
       "antiCorruption": "Canal de denuncias"
     },
     "related": {
@@ -268,7 +268,7 @@
       {
         "year": "2017",
         "title": "Payment Gateway 2.0",
-        "desc": "Integración a Pago App y Pago Web para Adquirente."
+        "desc": "Integración a Pago App y Pago Web para el principal Adquirente del Perú."
       },
       {
         "year": "2018",
@@ -278,7 +278,7 @@
       {
         "year": "2019",
         "title": "POS marca blanca",
-        "desc": "Canal de pago para nuevo Adquirente en Peru, a traves de nuestro Payment Gateway, reduciendo costos y time to market."
+        "desc": "Canal de pago para nuevo Adquirente en Perú, a través de nuestro Payment Gateway, reduciendo costos y time to market."
       },
       {
         "year": "2020",
@@ -308,7 +308,7 @@
        {
         "year": "2023",
         "title": "Hitos",
-        "desc": "Nuevo adquirente logro mas de 3B de soles transaccionados por nuestra plataforma."
+        "desc": "Nuevo adquirente logro mas de 3 billones de soles transacciones por nuestra plataforma."
       },
       {
         "year": "2024",
